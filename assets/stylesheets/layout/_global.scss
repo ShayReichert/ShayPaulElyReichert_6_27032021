@@ -1,0 +1,36 @@
+// ------ GENERAL ------
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-default;
+}
+
+// Hide visually (but not hide for accessibility)
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.round-image {
+  border-radius: $circle-radius;
+  height: 300px;
+  width: 500px;
+  // background: url("../../images/EllieRoseWilkens.jpg");
+
+  img {
+    height: 300px;
+    width: 500px;
+  }
+}
