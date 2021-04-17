@@ -8,6 +8,7 @@ let config = {
   output: {
     path: path.resolve(__dirname, "./public"),
     filename: "./bundle.js",
+    assetModuleFilename: "images/[hash][ext][query]",
   },
 
   module: {
@@ -21,14 +22,11 @@ let config = {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
       },
-      // {
-      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
-      //   // type: "asset/resource",
-      //   loader: "file-loader",
-      //   options: {
-      //     name: "[path][name].[ext]",
-      //   },
-      // },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+
       {
         test: /\.html$/i,
         loader: "html-loader",
@@ -41,6 +39,12 @@ let config = {
     new HtmlWebpackPlugin({
       hash: true,
       template: "./src/index.html",
+      filename: `index.html`,
+    }),
+    new HtmlWebpackPlugin({
+      hash: true,
+      template: "./src/photographer.html",
+      filename: `photographer.html`,
     }),
   ],
 };

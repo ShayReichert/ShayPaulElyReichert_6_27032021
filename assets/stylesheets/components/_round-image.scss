@@ -1,0 +1,13 @@
+.round-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: $circle-radius;
+  height: 16rem;
+  width: 16rem;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}

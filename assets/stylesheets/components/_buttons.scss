@@ -1,13 +1,11 @@
 // ------ Buttons and links ------
 input,
 textarea {
-  border-radius: 0.5rem;
+  border-radius: $half-unit;
 }
 
 .btn {
-  width: 17rem;
-  padding-top: 2.3rem;
-  padding-bottom: 2.3rem;
+  padding: 2.1rem 1rem;
   border: none;
   color: $white;
   background-color: $secondary;
@@ -31,12 +29,14 @@ textarea {
   font-weight: 400;
 }
 
+// Tags button
 .tags {
   text-decoration: none;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem $one-unit;
   color: $secondary;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 500;
+  margin: 0.3rem;
   border: 0.5px solid #c4c4c4;
   border-radius: $circle-radius;
   transition: $transition-default;

@@ -6,44 +6,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FishEye</title>
   </head>
+
   <body>
-    <div>
-      <input class="btn btn-submit" type="submit" value="Contactez-moi" />
+    <div class="site-content">
+      <a class="skip-navigation" href="#main" aria-label="Accès au contenu">Accès au contenu</a>
     </div>
 
-    <br />
+    <header role="banner">
+      <div class="logo">
+        <a href="/">
+          <img src="../assets/images/logo.png" alt="Fisheye Page d'accueil" />
+        </a>
+      </div>
 
-    <div>
-      <input id="first_name" class="inputs" aria-labelledby="first_name_label" />
-    </div>
+      <div class="nav tags-wrapper" role="navigation" aria-label="Catégories des photographes">
+        <a class="tags" href="/[tag]">
+          #[Portrait]
+          <span class="hidden" aria-label="Tag">Portrait</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Art]
+          <span class="hidden" aria-label="Tag">Art</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Mode]
+          <span class="hidden" aria-label="Tag">Mode</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Architecture]
+          <span class="hidden" aria-label="Tag">Architecture</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Voyage]
+          <span class="hidden" aria-label="Tag">Voyage</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Sport]
+          <span class="hidden" aria-label="Tag">Sport</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Animaux]
+          <span class="hidden" aria-label="Tag">Animaux</span>
+        </a>
+        <a class="tags" href="/[tag]">
+          #[Évènements]
+          <span class="hidden" aria-label="Tag">Évènements</span>
+        </a>
+      </div>
+      <h1 class="main-title">Nos photographes</h1>
+    </header>
 
-    <br />
+    <main id="main" role="main">
+      <section class="photographer-wrapper" role="region" aria-label="Tous les photographes">
+        <div class="photographer-card">
+          <a class="link" href="photographer.html" aria-label="[Mimi Keel]">
+            <div class="round-image">
+              <img src="../assets/images/EllieRoseWilkens.jpg" alt="" />
+            </div>
+            <h2>Mimi Keel</h2>
+          </a>
+          <div class="infos">
+            <p class="location">London, UK</p>
+            <p class="tagline">Voir le beau dans le quotidien</p>
+            <p class="price">400€/jour</p>
+          </div>
+          <div class="tags-wrapper">
+            <a class="tags" href="/[tag]">
+              #[Portrait]
+              <span class="hidden" aria-label="Tag">Portrait</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Évènements]
+              <span class="hidden" aria-label="Tag">Évènements</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Voyage]
+              <span class="hidden" aria-label="Tag">Voyage</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Animaux]
+              <span class="hidden" aria-label="Tag">Animaux</span>
+            </a>
+          </div>
+        </div>
 
-    <div>
-      <textarea
-        id="message"
-        class="inputs"
-        aria-labelledby="message_label"
-        aria-invalid="false"
-        aria-required="true"
-        required
-      >
-      </textarea>
-    </div>
+        <div class="photographer-card">
+          <a class="link" href="/photographer.html" aria-label="[Mimi Keel]">
+            <div class="round-image">
+              <img src="../assets/images/EllieRoseWilkens.jpg" alt="" />
+            </div>
+            <h2>Mimi Keel</h2>
+          </a>
+          <div class="infos">
+            <p class="location">London, UK</p>
+            <p class="tagline">Voir le beau dans le quotidien</p>
+            <p class="price">400€/jour</p>
+          </div>
+          <div class="tags-wrapper">
+            <a class="tags" href="/[tag]">
+              #[Portrait]
+              <span class="hidden" aria-label="Tag">Portrait</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Évènements]
+              <span class="hidden" aria-label="Tag">Évènements</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Voyage]
+              <span class="hidden" aria-label="Tag">Voyage</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Animaux]
+              <span class="hidden" aria-label="Tag">Animaux</span>
+            </a>
+          </div>
+        </div>
 
-    <br />
-
-    <div>
-      <a href="#" class="tags">
-        #Portrait
-        <span class="hidden" aria-label="Tag">Portrait</span>
-      </a>
-    </div>
-
-    <br />
-
-    <div class="round-image">
-      <img src="../assets/images/EllieRoseWilkens.jpg" alt="" />
-    </div>
+        <div class="photographer-card">
+          <a class="link" href="photographer.html" aria-label="[Mimi Keel]">
+            <div class="round-image">
+              <img src="../assets/images/EllieRoseWilkens.jpg" alt="" />
+            </div>
+            <h2>Mimi Keel</h2>
+          </a>
+          <div class="infos">
+            <p class="location">London, UK</p>
+            <p class="tagline">Voir le beau dans le quotidien</p>
+            <p class="price">400€/jour</p>
+          </div>
+          <div class="tags-wrapper">
+            <a class="tags" href="/[tag]">
+              #[Portrait]
+              <span class="hidden" aria-label="Tag">Portrait</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Évènements]
+              <span class="hidden" aria-label="Tag">Évènements</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Voyage]
+              <span class="hidden" aria-label="Tag">Voyage</span>
+            </a>
+            <a class="tags" href="/[tag]">
+              #[Animaux]
+              <span class="hidden" aria-label="Tag">Animaux</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

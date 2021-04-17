@@ -1,0 +1,14 @@
+// Display flex
+@mixin flex-center($wrap: wrap, $justify: center, $align: center) {
+  display: flex;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Media Queries
+@mixin screen-max($size: $size) {
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}

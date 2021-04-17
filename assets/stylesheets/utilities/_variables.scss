@@ -1,4 +1,5 @@
 // ------ VARIABLES ------
+
 // Colors
 $primary: #d3573c;
 $secondary: #901c1c;
@@ -7,10 +8,26 @@ $white: #fff;
 $black: #000;
 $secondary-dark-grey: #525252;
 $secondary-light-grey: #fafafa;
+$grey: #757575;
 
 // Fonts styles
 $font-default: "DM Sans", Arial, Helvetica, sans-serif;
 
+// Units
+$one-unit: 1rem;
+$half-unit: $one-unit / 2;
+$double-unit: $one-unit * 2;
+
+$main-vertical-padding: 3rem;
+$main-horizontal-padding: 5rem;
+
+$mobile-vertical-padding: 4rem;
+$mobile-horizontal-padding: 2rem;
+
+// Media Queries
+$sm: 768px;
+$xl: 1440px;
+
 // Others
 $transition-default: 0.3s all;
-$circle-radius: 3rem;
+$circle-radius: 10rem;
