@@ -1,0 +1,55 @@
+// ------ HEADER ------
+
+// Header Home Page
+header {
+  max-width: $xl;
+  margin: auto;
+
+  .header-wrapper {
+    @include flex-center();
+    margin-bottom: 10rem;
+    column-gap: 2rem;
+
+    .logo {
+      flex: 0 0 20%;
+
+      img {
+        width: $one-unit * 20;
+      }
+    }
+
+    .nav {
+      flex: 0 0 50%;
+    }
+
+    @include screen-max($sm) {
+      margin-bottom: 4rem;
+      justify-content: space-between;
+
+      .logo {
+        order: 1;
+        img {
+          width: $one-unit * 13;
+        }
+      }
+
+      .main-title {
+        order: 1;
+        font-size: 1.4rem;
+      }
+
+      .nav {
+        order: 2;
+        flex: 0 0 100%;
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+.photographer-page {
+  header .header-wrapper {
+    justify-content: flex-start;
+    margin-bottom: 4rem;
+  }
+}

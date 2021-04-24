@@ -1,16 +1,13 @@
-@import 'utilities/fonts';
-@import 'utilities/mixins';
-@import 'utilities/variables';
+@import "utilities/fonts";
+@import "utilities/mixins";
+@import "utilities/normalize";
+@import "utilities/variables";
 
-@import 'base/normalize';
+@import "components/buttons";
+@import "components/drop-down";
+@import "components/round-image";
 
-@import 'components/buttons';
-@import 'components/drop-down';
-@import 'components/round-image';
-
-@import 'layout/global';
-@import 'layout/header';
-
-@import 'pages/home';
-@import 'pages/photographer';
-
+@import "global/global";
+@import "global/header";
+@import "global/home";
+@import "global/photographer";

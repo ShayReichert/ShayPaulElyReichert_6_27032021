@@ -1,0 +1,70 @@
+// ------ GENERAL ------
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-default;
+  padding: $main-vertical-padding $main-horizontal-padding;
+
+  @include screen-max($sm) {
+    padding: $mobile-vertical-padding $mobile-horizontal-padding;
+  }
+}
+
+h1 {
+  color: $secondary;
+  font-size: 3.6rem;
+  font-weight: 400;
+}
+
+h2 {
+  color: $primary;
+  font-size: 3.6rem;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+}
+
+p {
+  margin: $half-unit;
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: $half-unit;
+}
+
+// Accessibility : direct content access
+.skip-navigation {
+  position: fixed;
+  padding: 0 $one-unit;
+  line-height: 60px;
+  color: $secondary;
+  background-color: $white;
+  top: -100%;
+  right: 50%;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// Visually hide (for accessibility)
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

@@ -7,6 +7,7 @@ let config = merge(common, {
   mode: "development",
 
   devServer: {
+    publicPath: "/",
     contentBase: path.resolve(__dirname, "./src"),
     watchContentBase: true,
     historyApiFallback: true,

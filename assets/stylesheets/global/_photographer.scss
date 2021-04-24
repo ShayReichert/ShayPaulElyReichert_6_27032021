@@ -1,0 +1,241 @@
+// Photographer Page
+
+.photographer-page {
+  section {
+    max-width: $xl;
+    margin: auto;
+  }
+
+  // section 1
+  .photographer-presentation {
+    @include flex-center($justify: space-between);
+    padding: 7rem 5rem;
+    background: $secondary-light-grey;
+
+    // smartphone
+    @include screen-max($sm) {
+      padding: 0;
+      background: transparent;
+      margin: 0;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+    }
+
+    .col-1 {
+      display: flex;
+      flex: 0 0 50%;
+      gap: 3rem;
+
+      @include screen-max($sm) {
+        flex: 0 0 70%;
+      }
+
+      .infos {
+        h2 {
+          font-size: 6.4rem;
+          text-align: left;
+
+          @include screen-max($sm) {
+            font-size: 3.6rem;
+          }
+        }
+
+        .location {
+          color: $secondary;
+          font-size: 2.4rem;
+
+          @include screen-max($sm) {
+            font-size: 1.3rem;
+          }
+        }
+
+        .tagline {
+          color: $secondary-dark-grey;
+          font-size: 1.8rem;
+          margin: 2rem 0;
+
+          @include screen-max($sm) {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+          }
+        }
+
+        .tags-wrapper {
+          justify-content: flex-start;
+
+          .tags {
+            font-size: 1.8rem;
+
+            @include screen-max($sm) {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+
+      .contact {
+        margin-top: 1rem;
+
+        @include screen-max($sm) {
+          position: fixed;
+          z-index: 999;
+          bottom: 3rem;
+          right: 50%;
+          transform: translateX(50%);
+
+          .btn {
+            padding: 0.5rem 2rem;
+          }
+        }
+      }
+    }
+
+    .col-2 {
+      flex: 0 0 20%;
+
+      .round-image {
+        @include flex-center();
+        height: 20rem;
+        width: 20rem;
+        filter: drop-shadow(0px 3px 5px $grey);
+
+        @include screen-max($sm) {
+          height: 30vw;
+          width: 30vw;
+        }
+
+        img {
+          border-radius: $circle-radius;
+          height: 95%;
+          width: 95%;
+        }
+      }
+    }
+  }
+
+  // section 2
+  .photographer-medias {
+    .sort {
+      @include flex-center($justify: flex-start);
+      margin: 2rem 0 3rem 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+
+      @include screen-max($sm) {
+        display: none;
+      }
+
+      .custom-select {
+        position: relative;
+        margin: 0 3rem;
+
+        &:after {
+          content: "<";
+          position: absolute;
+          top: 1.4rem;
+          right: 1.4rem;
+          color: $white;
+          font-family: $font-default;
+          transform: rotate(-90deg);
+          font-size: 3rem;
+          font-weight: 400;
+          pointer-events: none;
+        }
+      }
+
+      select::-ms-expand {
+        display: none;
+      }
+
+      select {
+        appearance: none;
+        background: $secondary;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 2rem 5rem 2rem 2rem;
+      }
+
+      #sort-by {
+        margin-right: 2rem;
+      }
+    }
+
+    .media-wrapper {
+      @include flex-center($justify: space-between);
+      gap: 8rem;
+
+      .media-card {
+        width: 35rem;
+        height: 30rem;
+
+        @include screen-max($sm) {
+          width: 33rem;
+          height: 19rem;
+        }
+
+        img,
+        video {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          object-position: 50% 40%;
+
+          @include screen-max($sm) {
+            object-position: 50% 18%;
+            border-radius: 5px;
+          }
+        }
+
+        .media-infos {
+          display: flex;
+          justify-content: space-between;
+          margin: 0.7rem 0;
+
+          .part-1 {
+            flex: 0 0 50%;
+          }
+
+          .part-2 {
+            .media-price {
+              margin-right: 1rem;
+            }
+          }
+
+          span {
+            color: $secondary;
+            font-size: 2.4rem;
+
+            @include screen-max($sm) {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Fixed element : likes and price
+  .extra-infos {
+    position: fixed;
+    bottom: 0;
+    right: 3rem;
+    padding: 2rem;
+    display: flex;
+    background: $secondary-bg;
+    border-radius: 5px 5px 0 0;
+
+    @include screen-max($sm) {
+      display: none;
+    }
+
+    div {
+      font-size: 2.4rem;
+    }
+
+    div:nth-child(1) {
+      margin-right: 6rem;
+    }
+  }
+}

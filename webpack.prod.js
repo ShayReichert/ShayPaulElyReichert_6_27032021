@@ -12,6 +12,10 @@ let config = merge(common, {
     minimize: true,
     minimizer: [`...`, new TerserPlugin()],
   },
+
+  output: {
+    clean: true,
+  },
 });
 
 module.exports = config;

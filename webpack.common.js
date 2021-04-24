@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 let config = {
   entry: "./src/index.js",
@@ -36,15 +37,37 @@ let config = {
 
   plugins: [
     new MiniCssExtractPlugin(),
+
     new HtmlWebpackPlugin({
       hash: true,
       template: "./src/index.html",
       filename: `index.html`,
     }),
+
     new HtmlWebpackPlugin({
       hash: true,
       template: "./src/photographer.html",
       filename: `photographer.html`,
+    }),
+
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        plugins: [
+          ["gifsicle", { interlaced: true }],
+          ["jpegtran", { progressive: true }],
+          ["optipng", { optimizationLevel: 5 }],
+          [
+            "svgo",
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
     }),
   ],
 };

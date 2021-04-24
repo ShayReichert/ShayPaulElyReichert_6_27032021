@@ -1,0 +1,57 @@
+// Home : photographers cards
+
+section.photographer-wrapper {
+  @include flex-center($justify: flex-start);
+  gap: 5rem;
+  max-width: $xl;
+  margin: auto;
+}
+
+.photographer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 31%;
+
+  @include screen-max($sm) {
+    flex: 0 0 100%;
+  }
+
+  .link {
+    text-decoration: none;
+
+    .round-image {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .infos {
+    text-align: center;
+
+    .location {
+      color: $secondary;
+      font-size: 1.3rem;
+    }
+
+    .tagline {
+      color: $black;
+      font-size: 1rem;
+    }
+
+    .price {
+      color: $grey;
+      font-size: 0.9rem;
+    }
+  }
+
+  .tags-wrapper {
+    .tags {
+      text-transform: lowercase;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  &.hide {
+    display: none;
+  }
+}
