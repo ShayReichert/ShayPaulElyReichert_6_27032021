@@ -70,6 +70,7 @@
       "likes": 62,
       "date": "2011-12-08",
       "price": 55,
+      "title": "Yellow Beach",
       "description": "Une personne racisée en tenue jaune, plein pied"
     },
     {
@@ -80,6 +81,7 @@
       "likes": 11,
       "date": "2011-11-06",
       "price": 55,
+      "title": "Urban Jungle",
       "description": "Une personne en tenue verte sur une route, plein pied"
     },
     {
@@ -90,16 +92,18 @@
       "likes": 72,
       "date": "2013-08-12",
       "price": 55,
+      "title": "Fashion Pattern on Pattern",
       "description": "Une personne en tenue rayée sur fond à carreaux, plein américain"
     },
     {
       "id": 9275938,
       "photographerId": 82,
-      "image": "Event-_eddingGazebo.jpg",
+      "image": "Event_WeddingGazebo.jpg",
       "tags": ["events"],
       "likes": 69,
       "date": "2018-02-22",
       "price": 55,
+      "title": "Wedding",
       "description": "Dôme de mariage"
     },
     {
@@ -110,6 +114,7 @@
       "likes": 2,
       "date": "2020-05-25",
       "price": 55,
+      "title": "Party",
       "description": "Deux personnes de dos à une fête la nuit"
     },
     {
@@ -120,6 +125,7 @@
       "likes": 33,
       "date": "2019-06-12",
       "price": 55,
+      "title": "18th Anniversary",
       "description": "Table d'anniversaire avec des ballons en forme de 18"
     },
     {
@@ -130,6 +136,7 @@
       "likes": 24,
       "date": "2011-12-08",
       "price": 100,
+      "title": "Wooden Horse Sculpture",
       "description": "Cheval en patchwork de pièces de bois"
     },
     {
@@ -140,6 +147,7 @@
       "likes": 88,
       "date": "2007-05-07",
       "price": 55, 
+      "title": "Triangle Man",
       "description": "Peinture d'un personnage sur un mur bleu recouvert d'un grand triangle blanc"
     },
     {
@@ -150,6 +158,7 @@
       "likes": 24,
       "date": "2018-05-05",
       "price": 55,
+      "title": "Lumière Violette",
       "description": "Tags sur les murs carrelés d'un grand couloir"
     },
     {
@@ -160,6 +169,7 @@
       "likes": 75,
       "date": "2019-11-25",
       "price": 55,
+      "title": "Mine",
       "description": "Plein de têtes d'oiseaux bleu et rouge en peinture"
     },
 
@@ -171,6 +181,7 @@
       "likes": 52,
       "date": "2013-02-30",
       "price": 70,
+      "title": "2000 with 8",
       "description": "Des rameurs vus du dessus"
     },
     {
@@ -181,6 +192,7 @@
       "likes": 58,
       "date": "2018-07-17",
       "price": 70,
+      "title": "Ailes",
       "description": "Deux personnes de plein pieds, un bras levé et les yeux fermés"
     },
     {
@@ -191,6 +203,7 @@
       "likes": 11,
       "date": "2019-08-12",
       "price": 70,
+      "title": "Melody Red on Stripes",
       "description": "Une personne noire en robe rouge descandant des escaliers"
     },
     {
@@ -201,16 +214,18 @@
       "likes": 2,
       "date": "2019-01-02",
       "price": 70,
+      "title": "Conférence",
       "description": "Une personne racisée présentant son travail à d'autres sur des post it collés au mur"
     },
     {
       "id": 725639493,
       "photographerId": 925,
-      "image": "Event_ProductPitchjpg",
+      "image": "Event_ProductPitch.jpg",
       "tags": ["events"],
       "likes": 3,
       "date": "2019-05-20",
       "price": 70,
+      "title": "Product Pitch",
       "description": "Une personne blanche avec une petite statue à la main présentant son travail"
     },
     {
@@ -221,6 +236,7 @@
       "likes": 52,
       "date": "2019-07-18",
       "price": 70,
+      "title": "Keyboard Check",
       "description": "Une personne blanche jouant sur un piano électronique en concert"
     },
     {
@@ -231,6 +247,7 @@
       "likes": 23,
       "date": "2018-02-22",
       "price": 70,
+      "title": "Emcee",
       "description": "Une personne racisée chantant dans un micro en concert"
     },
     {
@@ -241,6 +258,7 @@
       "likes": 52,
       "date": "2017-03-13",
       "price": 70,
+      "title": "Majesty",
       "description": "Un cerf dans une lumière jaune intense"
     },
     {
@@ -251,6 +269,7 @@
       "likes": 52,
       "date": "2016-06-12",
       "price": 70,
+      "title": "Chiot",
       "description": "Un chiot jouant avec sa laisse sur la plage"
     },
 
@@ -262,6 +281,7 @@
       "likes": 23,
       "date": "2017-03-18",
       "price": 45,
+      "title": "Montagne Rocheuse",
       "description": "Lent travelling au dessus d'une montage rocheuse"
     },
     {
@@ -272,6 +292,7 @@
       "likes": 101,
       "date": "2017-04-03",
       "price": 45,
+      "title": "Outdoor Bath",
       "description": "Des personnes qui se baignent dans une grande source d'eau chaude"
     },
     {
@@ -282,6 +303,7 @@
       "likes": 99,
       "date": "2018-04-30",
       "price": 45,
+      "title": "Route dans la vallée",
       "description": "Route américaine dans une vallée"
     },
     {
@@ -292,6 +314,7 @@
       "likes": 34,
       "date": "2016-04-05",
       "price": 45,
+      "title": "Pont dans la forêt",
       "description": "Un pont dans la forêt"
     },
     {
@@ -302,6 +325,7 @@
       "likes": 23,
       "date": "2017-03-18",
       "price": 45,
+      "title": "Bateau",
       "description": "Vue sur une montage depuis une barque en bois dans un lac"
     },
     {
@@ -312,6 +336,7 @@
       "likes": 66,
       "date": "2018-05-24",
       "price": 45,
+      "title": "Portrait",
       "description": "Portrait d'une personne blanche et rousse, souriante avec du rouge à lèvres et des tâches de rousseurs"
     },
     {
@@ -322,7 +347,8 @@
       "likes": 52,
       "date": "2017-04-21",
       "price": 45,
-      "description": "Portrait clair obscur en noir et blancvue de trois quart d'une personne noire"
+      "title": "Shaw",
+      "description": "Portrait clair obscur en noir et blanc vue de trois quart d'une personne noire"
     },
     {
       "id": 23523533,
@@ -332,6 +358,7 @@
       "likes": 95,
       "date": "2018-11-02",
       "price": 45,
+      "title": "Alexandra",
       "description": "Portrait d'une personne noire, en noir et blanc, cheveux clair et court"
     },
     {
@@ -342,6 +369,7 @@
       "likes": 25,
       "date": "2019-01-02",
       "price": 45,
+      "title": "Pause d'après-midi",
       "description": "Portrait d'une personne âgée et blanche entrain de fumer"
     },
 
@@ -353,6 +381,7 @@
       "likes": 88,
       "date": "2019-02-03",
       "price": 45,
+      "title": "Solitude",
       "description": "Plan large d'une personne seule dans la montage "
     },
     {
@@ -363,6 +392,7 @@
       "likes": 85,
       "date": "2019-04-03",
       "price": 45,
+      "title": "Couleurs",
       "description": "Maisons d'italie multicolores au flanc d'une fallaise à côté de la mer"
     },
     {
@@ -373,6 +403,7 @@
       "likes": 34,
       "date": "2019-04-07",
       "price": 45,
+      "title": "Mercredi",
       "description": "Portrait d'un enfant en noir et blanc, allongé et tirant sur ses joues"
     },
     {
@@ -383,6 +414,7 @@
       "likes": 63,
       "date": "2019-04-07",
       "price": 45,
+      "title": "Nora",
       "description": "Plan buste d'une personne noire avec des lunettes appuyé sur un fauteil rouge sur fond vert"
     },
     {
@@ -393,6 +425,7 @@
       "likes": 55,
       "date": "2019-06-20",
       "price": 45,
+      "title": "Background",
       "description": "Portrait d'une personne en noir et blanc, tête un peu en arrière"
     },
     {
@@ -403,6 +436,7 @@
       "likes": 25,
       "date": "2019-06-21",
       "price": 45,
+      "title": "Table de Mariage",
       "description": "Longue table de fête en extérieur, sans personne"
     },
     {
@@ -413,6 +447,7 @@
       "likes": 52,
       "date": "2019-06-25",
       "price": 45,
+      "title": "Portrait de marié.es",
       "description": "Des mariés de plein pieds front à front, dans des rochers"
     },
     {
@@ -423,6 +458,7 @@
       "likes": 77,
       "date": "2019-06-28",
       "price": 45,
+      "title": "Marié.es dansants",
       "description": "Des mariés dansant sous des voiles"
     },
     {
@@ -433,16 +469,18 @@
       "likes": 142,
       "date": "2019-08-23",
       "price": 60,
+      "title": "Chevaux dans la montagne",
       "description": "Troupeau de chevaux trottant"
     },
     {
       "id": 95234343,
       "photographerId": 243,
-      "image": "Animals_Rainbow.jpg.jpg",
+      "image": "Animals_Rainbow.jpg",
       "tags": ["animals"],
       "likes": 59,
       "date": "2019-07-02",
       "price": 60,
+      "title": "Arc-en-ciel",
       "description": "Rollier à longs brins, plan serré"
     },
 
@@ -454,6 +492,7 @@
       "likes": 25,
       "date": "2019-04-03",
       "price": 60,
+      "title": "Rue",
       "description": "Plan large d'une rue en chine avec deux personnes de dos"
     },
     {
@@ -464,6 +503,7 @@
       "likes": 53,
       "date": "2019-05-06",
       "price": 60,
+      "title": "Canal dans le soleil",
       "description": "Canal à Venise"
     },
     {
@@ -474,6 +514,7 @@
       "likes": 33,
       "date": "2019-05-12",
       "price": 60,
+      "title": "Montagne",
       "description": "Lac avec forêt et montage en arrière plan"
     },
     {
@@ -484,6 +525,7 @@
       "likes": 53,
       "date": "2019-06-20",
       "price": 60,
+      "title": "Vélo et lampadaire",
       "description": "Vélo adossé à une rampe d'escalier et un lampadaire"
     },
     {
@@ -494,6 +536,7 @@
       "likes": 63,
       "date": "2019-06-26",
       "price": 60,
+      "title": "Porte d'aventure",
       "description": "Porte avec une voûte en andalousie"
     },
     {
@@ -504,6 +547,7 @@
       "likes": 52,
       "date": "2019-06-30",
       "price": 60,
+      "title": "Contraste",
       "description": "Nouvelle synagogue de Berline"
     },
     {
@@ -514,6 +558,7 @@
       "likes": 63,
       "date": "2019-07-20",
       "price": 60,
+      "title": "Colline",
       "description": "Village sur une montage en Inde"
     },
     {
@@ -524,6 +569,7 @@
       "likes": 88,
       "date": "2020-01-05",
       "price": 60,
+      "title": "Dome",
       "description": "Tour de Pise en contre plongée"
     },
     {
@@ -534,6 +580,7 @@
       "likes": 57,
       "date": "2020-01-20",
       "price": 65,
+      "title": "Routes",
       "description": "Nombreuses routes qui se croisent vue du dessus"
     },
     {
@@ -544,6 +591,7 @@
       "likes": 54,
       "date": "2020-05-05",
       "price": 60,
+      "title": "Angles",
       "description": "Appartements très géométriquement droits, rouge brique et toits ardoise"
     },
 
@@ -555,6 +603,7 @@
       "likes": 150,
       "date": "2018-02-30",
       "price": 70,
+      "title": "Gymnastique",
       "description": "Personne faisant de la gymnastique, suspendue à une corde par la main"
     },
     {
@@ -565,6 +614,7 @@
       "likes": 101,
       "date": "2018-03-05",
       "price": 65,
+      "title": "Prochaine prise",
       "description": "Personne faisant de l'escalade et s'apprétant à grimper"
     },
     {
@@ -575,6 +625,7 @@
       "likes": 103,
       "date": "2018-03-10",
       "price": 70,
+      "title": "Tunnel",
       "description": "Personne faisant du surf dans un rouleau"
     },
     {
@@ -585,6 +636,7 @@
       "likes": 77,
       "date": "2018-04-16",
       "price": 50,
+      "title": "Croisé",
       "description": "Personne faisant du ski, sautant avec les skis croisés"
     },
     {
@@ -595,6 +647,7 @@
       "likes": 88,
       "date": "2018-04-22",
       "price": 65,
+      "title": "Fin de course",
       "description": "Personnes faisant une compétition de course"
     },
     {
@@ -605,6 +658,7 @@
       "likes": 95,
       "date": "2018-04-27",
       "price": 70,
+      "title": "Saut",
       "description": "Personne faisant une figure de skate dans un skateparc"
     },
     {
@@ -615,6 +669,7 @@
       "likes": 52,
       "date": "2018-05-03",
       "price": 75,
+      "title": "Lumière blanche",
       "description": "Contre plongé d'un dôme intérieur blanc"
     },
     {
@@ -625,6 +680,7 @@
       "likes": 55,
       "date": "2018-05-10",
       "price": 72,
+      "title": "Moderne",
       "description": "Bâtiment design ressemblant à une dune de sable"
     },
     {
@@ -635,6 +691,7 @@
       "likes": 85,
       "date": "2018-05-15",
       "price": 71,
+      "title": "Fer à cheval",
       "description": "Bâtiment design ressemblant à un fer à cheval"
     },
     {
@@ -645,6 +702,7 @@
       "likes": 66,
       "date": "2018-05-20",
       "price": 58,
+      "title": "Croisement",
       "description": "Bâtiment design avec beaucoup de lignes verticales et horizontales"
     },
     {
@@ -655,6 +713,7 @@
       "likes": 79,
       "date": "2018-05-21",
       "price": 80,
+      "title": "Lignes courbes",
       "description": "Bâtiment design ressemblant à un parking à niveau avec des lignes courbées"
     }
   ]

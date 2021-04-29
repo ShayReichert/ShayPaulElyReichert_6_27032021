@@ -1,17 +1,21 @@
 // Home : photographers cards
 
-section.photographer-wrapper {
+.photographer-wrapper {
   @include flex-center($justify: flex-start);
-  gap: 5rem;
+  gap: 4rem;
   max-width: $xl;
-  margin: auto;
+  margin: 10rem auto auto;
+
+  &.hide {
+    display: none;
+  }
 }
 
 .photographer-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 0 0 31%;
+  flex: 1 0 30%;
 
   @include screen-max($sm) {
     flex: 0 0 100%;

@@ -1,6 +1,6 @@
 // Photographer Page
 
-.photographer-page {
+.single-wrapper {
   section {
     max-width: $xl;
     margin: auto;
@@ -24,7 +24,8 @@
 
     .col-1 {
       display: flex;
-      flex: 0 0 50%;
+      justify-content: space-between;
+      flex: 0 0 53%;
       gap: 3rem;
 
       @include screen-max($sm) {
@@ -44,6 +45,7 @@
         .location {
           color: $secondary;
           font-size: 2.4rem;
+          margin: 0.7rem 0;
 
           @include screen-max($sm) {
             font-size: 1.3rem;
@@ -53,16 +55,20 @@
         .tagline {
           color: $secondary-dark-grey;
           font-size: 1.8rem;
-          margin: 2rem 0;
+          margin: 0.7rem 0;
 
           @include screen-max($sm) {
             font-size: 1.3rem;
-            margin: 1rem 0;
+            margin: 0.7rem 0;
           }
         }
 
         .tags-wrapper {
           justify-content: flex-start;
+
+          .tags:first-of-type {
+            margin-left: 0;
+          }
 
           .tags {
             font-size: 1.8rem;
@@ -98,11 +104,11 @@
         @include flex-center();
         height: 20rem;
         width: 20rem;
-        filter: drop-shadow(0px 3px 5px $grey);
+        filter: drop-shadow(0px 5px 6px $shadow);
 
         @include screen-max($sm) {
-          height: 30vw;
-          width: 30vw;
+          height: 25vw;
+          width: 25vw;
         }
 
         img {

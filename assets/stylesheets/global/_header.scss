@@ -6,12 +6,15 @@ header {
   margin: auto;
 
   .header-wrapper {
-    @include flex-center();
-    margin-bottom: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     column-gap: 2rem;
 
     .logo {
       flex: 0 0 20%;
+      margin: 2.5rem 0;
 
       img {
         width: $one-unit * 20;
@@ -23,11 +26,12 @@ header {
     }
 
     @include screen-max($sm) {
-      margin-bottom: 4rem;
-      justify-content: space-between;
+      margin-bottom: 3rem;
 
       .logo {
         order: 1;
+        margin: 0;
+
         img {
           width: $one-unit * 13;
         }
@@ -41,15 +45,8 @@ header {
       .nav {
         order: 2;
         flex: 0 0 100%;
-        margin-top: 2rem;
+        margin-top: 4rem;
       }
     }
-  }
-}
-
-.photographer-page {
-  header .header-wrapper {
-    justify-content: flex-start;
-    margin-bottom: 4rem;
   }
 }

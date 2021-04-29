@@ -44,12 +44,6 @@ let config = {
       filename: `index.html`,
     }),
 
-    new HtmlWebpackPlugin({
-      hash: true,
-      template: "./src/photographer.html",
-      filename: `photographer.html`,
-    }),
-
     new ImageMinimizerPlugin({
       minimizerOptions: {
         plugins: [
