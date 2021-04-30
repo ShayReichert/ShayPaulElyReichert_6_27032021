@@ -5,10 +5,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 let config = {
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+    photographer: "./src/photographer.js",
+  },
   output: {
     path: path.resolve(__dirname, "./public"),
-    filename: "./bundle.js",
+    // filename: "./bundle.js",
+    filename: "[name].[hash:20].js",
     assetModuleFilename: "images/[hash][ext][query]",
   },
 
@@ -39,9 +43,18 @@ let config = {
     new MiniCssExtractPlugin(),
 
     new HtmlWebpackPlugin({
-      hash: true,
+      // hash: true,
       template: "./src/index.html",
+      inject: true,
+      chunks: ["index"],
       filename: `index.html`,
+    }),
+    new HtmlWebpackPlugin({
+      // hash: true,
+      template: "./src/photographer.html",
+      inject: true,
+      chunks: ["photographer"],
+      filename: `photographer.html`,
     }),
 
     new ImageMinimizerPlugin({
