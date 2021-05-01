@@ -21,8 +21,44 @@
 
     <main id="main" role="main">
       <div class="single-wrapper" aria-label="Profil du photographe">
-        <!--  Data injected by index.js  -->
+        <!--  Data injected by photographer.js  -->
       </div>
     </main>
+
+    <!-- Lightbox -->
+    <div
+      class="lightbox-wrapper"
+      role="dialog"
+      aria-label="Affichage agrandi des médias"
+      aria-modal="true"
+      aria-hidden="true"
+      tab-index="-1"
+    >
+      <div class="modal-content">
+        <div class="modal-body">
+          <a href="javascript:void(0);" class="btn-icon swiper-button-prev">
+            <i class="fas fa-chevron-left icon-arrow" aria-hidden="true"></i>
+            <span class="hidden">Média précédent</span>
+          </a>
+
+          <div class="lightbox-slide fade">
+            <img
+              src="../assets/images/Animals_Rainbow.jpg"
+              alt="Rollier à longs brins, plan serré"
+            />
+          </div>
+
+          <div class="image-right">
+            <button class="close-modal" aria-label="fermer la modale">
+              <i class="fas fa-times"></i>
+            </button>
+            <a href="javascript:void(0);" class="btn-icon swiper-button-next">
+              <i class="fas fa-chevron-right icon-arrow" aria-hidden="true"></i>
+              <span class="hidden">Média suivant</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

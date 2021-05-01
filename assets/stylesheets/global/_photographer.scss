@@ -1,254 +1,328 @@
 // Photographer Page
 
-.single-wrapper {
-  padding: 0 $main-horizontal-padding $mobile-vertical-padding;
+body.photographer-page {
+  .single-wrapper {
+    padding: 0 $main-horizontal-padding $mobile-vertical-padding;
 
-  @include screen-max($sm) {
-    padding: 0;
-  }
-
-  section {
-    max-width: $xl;
-    margin: auto;
-  }
-
-  // section 1
-  .photographer-presentation {
-    @include flex-center($justify: space-between);
-    padding: 7rem 5rem;
-    background: $secondary-light-grey;
-
-    // smartphone
     @include screen-max($sm) {
       padding: 0;
-      background: transparent;
-      margin: 0;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      margin-bottom: 5rem;
     }
 
-    .col-1 {
-      display: flex;
-      justify-content: space-between;
-      flex: 0 0 53%;
-      gap: 3rem;
+    section {
+      max-width: $xl;
+      margin: auto;
+    }
 
+    // section 1
+    .photographer-presentation {
+      @include flex-center($justify: space-between);
+      padding: 7rem 5rem;
+      background: $secondary-light-grey;
+
+      // smartphone
       @include screen-max($sm) {
-        flex: 0 0 70%;
+        padding: 0;
+        background: transparent;
+        margin: 0;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        margin-bottom: 5rem;
       }
 
-      .infos {
-        h2 {
-          font-size: 6.4rem;
-          text-align: left;
+      .col-1 {
+        display: flex;
+        justify-content: space-between;
+        flex: 0 0 53%;
+        gap: 3rem;
 
-          @include screen-max($sm) {
-            font-size: 3.6rem;
-          }
+        @include screen-max($sm) {
+          flex: 0 0 70%;
         }
 
-        .location {
-          color: $secondary;
-          font-size: 2.4rem;
-          margin: 2rem 0;
+        .infos {
+          h2 {
+            font-size: 6.4rem;
+            text-align: left;
 
-          @include screen-max($sm) {
-            font-size: 1.3rem;
-          }
-        }
-
-        .tagline {
-          color: $secondary-dark-grey;
-          font-size: 1.8rem;
-          margin: 2rem 0;
-
-          @include screen-max($sm) {
-            font-size: 1.3rem;
-            margin: 1rem 0;
-          }
-        }
-
-        .tags-wrapper {
-          justify-content: flex-start;
-
-          .tags:first-of-type {
-            margin-left: 0;
+            @include screen-max($sm) {
+              font-size: 3.6rem;
+            }
           }
 
-          .tags {
-            font-size: 1.8rem;
+          .location {
+            color: $secondary;
+            font-size: 2.4rem;
+            margin: 2rem 0;
 
             @include screen-max($sm) {
               font-size: 1.3rem;
             }
           }
+
+          .tagline {
+            color: $secondary-dark-grey;
+            font-size: 1.8rem;
+            margin: 2rem 0;
+
+            @include screen-max($sm) {
+              font-size: 1.3rem;
+              margin: 1rem 0;
+            }
+          }
+
+          .tags-wrapper {
+            justify-content: flex-start;
+
+            .tags:first-of-type {
+              margin-left: 0;
+            }
+
+            .tags {
+              font-size: 1.8rem;
+
+              @include screen-max($sm) {
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
+
+        .contact {
+          margin-top: 1rem;
+
+          @include screen-max($sm) {
+            position: fixed;
+            z-index: 9;
+            bottom: 3rem;
+            right: 50%;
+            transform: translateX(50%);
+
+            .btn {
+              padding: 0.5rem 2rem;
+            }
+          }
         }
       }
 
-      .contact {
-        margin-top: 1rem;
+      .col-2 {
+        flex: 0 0 20%;
 
-        @include screen-max($sm) {
-          position: fixed;
-          z-index: 999;
-          bottom: 3rem;
-          right: 50%;
-          transform: translateX(50%);
+        .round-image {
+          @include flex-center();
+          height: 20rem;
+          width: 20rem;
+          filter: drop-shadow(0px 5px 6px $shadow);
 
-          .btn {
-            padding: 0.5rem 2rem;
+          @include screen-max($sm) {
+            height: 25vw;
+            width: 25vw;
+          }
+
+          img {
+            border-radius: $circle-radius;
+            height: 95%;
+            width: 95%;
           }
         }
       }
     }
 
-    .col-2 {
-      flex: 0 0 20%;
-
-      .round-image {
-        @include flex-center();
-        height: 20rem;
-        width: 20rem;
-        filter: drop-shadow(0px 5px 6px $shadow);
+    // section 2
+    .photographer-medias {
+      .sort {
+        @include flex-center($justify: flex-start);
+        margin: 2rem 0 3rem 0;
+        font-size: 1.8rem;
+        font-weight: 700;
 
         @include screen-max($sm) {
-          height: 25vw;
-          width: 25vw;
+          display: none;
         }
 
-        img {
-          border-radius: $circle-radius;
-          height: 95%;
-          width: 95%;
+        .custom-select {
+          position: relative;
+          margin: 0 3rem;
+
+          &:after {
+            content: "<";
+            position: absolute;
+            top: 1.4rem;
+            right: 1.4rem;
+            color: $white;
+            font-family: $font-default;
+            transform: rotate(-90deg);
+            font-size: 3rem;
+            font-weight: 400;
+            pointer-events: none;
+          }
+        }
+
+        select::-ms-expand {
+          display: none;
+        }
+
+        select {
+          appearance: none;
+          background: $secondary;
+          border: none;
+          border-radius: 5px;
+          color: white;
+          padding: 2rem 5rem 2rem 2rem;
+        }
+
+        #sort-by {
+          margin-right: 2rem;
+        }
+      }
+
+      .media-wrapper {
+        @include flex-center($justify: space-between);
+        row-gap: 8rem;
+
+        .media-card {
+          flex: 0 0 30%;
+          width: 35rem;
+          height: 30rem;
+
+          @include screen-max($sm) {
+            width: 33rem;
+            height: 19rem;
+          }
+
+          img,
+          video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            object-position: 50% 40%;
+
+            @include screen-max($sm) {
+              object-position: 50% 18%;
+            }
+          }
+
+          .media-infos {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.7rem 0;
+
+            .part-1 {
+              flex: 0 0 60%;
+            }
+
+            .part-2 {
+              .media-price {
+                margin-right: 1rem;
+              }
+              .heart-wrapper {
+                cursor: pointer;
+              }
+            }
+
+            span {
+              color: $secondary;
+              font-size: 2.4rem;
+
+              @include screen-max($sm) {
+                font-size: 1.4rem;
+              }
+            }
+          }
         }
       }
     }
-  }
 
-  // section 2
-  .photographer-medias {
-    .sort {
-      @include flex-center($justify: flex-start);
-      margin: 2rem 0 3rem 0;
-      font-size: 1.8rem;
-      font-weight: 700;
+    // Fixed element : likes and price
+    .extra-infos {
+      position: fixed;
+      bottom: 0;
+      right: 3rem;
+      padding: 2rem;
+      display: flex;
+      background: $secondary-bg;
+      border-radius: 5px 5px 0 0;
 
       @include screen-max($sm) {
         display: none;
       }
 
-      .custom-select {
-        position: relative;
-        margin: 0 3rem;
-
-        &:after {
-          content: "<";
-          position: absolute;
-          top: 1.4rem;
-          right: 1.4rem;
-          color: $white;
-          font-family: $font-default;
-          transform: rotate(-90deg);
-          font-size: 3rem;
-          font-weight: 400;
-          pointer-events: none;
-        }
+      div {
+        font-size: 2.4rem;
       }
 
-      select::-ms-expand {
-        display: none;
-      }
-
-      select {
-        appearance: none;
-        background: $secondary;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        padding: 2rem 5rem 2rem 2rem;
-      }
-
-      #sort-by {
-        margin-right: 2rem;
-      }
-    }
-
-    .media-wrapper {
-      @include flex-center($justify: space-between);
-      row-gap: 8rem;
-
-      .media-card {
-        flex: 0 0 30%;
-        width: 35rem;
-        height: 30rem;
-
-        @include screen-max($sm) {
-          width: 33rem;
-          height: 19rem;
-        }
-
-        img,
-        video {
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-          border-radius: 5px;
-          object-position: 50% 40%;
-
-          @include screen-max($sm) {
-            object-position: 50% 18%;
-          }
-        }
-
-        .media-infos {
-          display: flex;
-          justify-content: space-between;
-          margin: 0.7rem 0;
-
-          .part-1 {
-            flex: 0 0 50%;
-          }
-
-          .part-2 {
-            .media-price {
-              margin-right: 1rem;
-            }
-          }
-
-          span {
-            color: $secondary;
-            font-size: 2.4rem;
-
-            @include screen-max($sm) {
-              font-size: 1.4rem;
-            }
-          }
-        }
+      div:nth-child(1) {
+        margin-right: 6rem;
       }
     }
   }
+}
 
-  // Fixed element : likes and price
-  .extra-infos {
-    position: fixed;
-    bottom: 0;
-    right: 3rem;
-    padding: 2rem;
-    display: flex;
-    background: $secondary-bg;
-    border-radius: 5px 5px 0 0;
+// LightBox
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
 
-    @include screen-max($sm) {
-      display: none;
-    }
+.lightbox-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $white;
+  z-index: 10;
 
-    div {
-      font-size: 2.4rem;
-    }
+  .modal-content {
+    height: 100%;
+    border: 1px solid red;
 
-    div:nth-child(1) {
-      margin-right: 6rem;
+    .modal-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+
+      .btn-icon {
+        i {
+          color: $secondary;
+          font-size: 5rem;
+        }
+
+        &.swiper-button-prev {
+          margin-right: 4rem;
+        }
+        &.swiper-button-next {
+          margin-left: 4rem;
+        }
+      }
+
+      .lightbox-slide {
+        img,
+        video {
+          width: 1050px;
+          height: 900px;
+          object-fit: cover;
+          border-radius: 5px;
+          object-position: 50% 40%;
+        }
+      }
+
+      .image-right {
+        display: flex;
+        flex-direction: column;
+        height: 900px;
+
+        .close-modal {
+          color: $secondary;
+          font-size: 5rem;
+          background: transparent;
+          border: none;
+        }
+      }
     }
   }
 }

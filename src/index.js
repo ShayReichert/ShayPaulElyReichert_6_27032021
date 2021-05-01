@@ -1,5 +1,6 @@
 require("../assets/stylesheets/main.scss");
 import data from "../data.json";
+import { extractValueFromUrl } from "../assets/js/helpers";
 
 // ******************************* HOMEPAGE DATA ON LOAD ******************************* //
 
@@ -80,22 +81,12 @@ function displayPhotographers(data) {
 const allTags = Array.from(document.querySelectorAll(".tags"));
 const photographerCards = Array.from(document.querySelectorAll(".photographer-card"));
 
-// REGEX
-const tagRegex = /(?<=tag=)\w+/;
-
-// HELPERS
-function extractValueFromUrl(regex) {
-  const urlSearch = window.location.search ? window.location.search : "?tag=none";
-  const result = urlSearch.match(tagRegex);
-
-  return result[0];
-}
-
 // FUNCTIONS
 filterWithTagInit();
 
 function filterWithTagInit() {
-  const tagClick = extractValueFromUrl();
+  const tagRegex = /(?<=tag=)\w+/;
+  const tagClick = extractValueFromUrl(tagRegex);
 
   if (tagClick !== "none") {
     filterWithTag(tagClick);
