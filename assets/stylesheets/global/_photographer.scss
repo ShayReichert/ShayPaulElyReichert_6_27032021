@@ -301,6 +301,7 @@ body.modal-open {
       }
 
       .lightbox-slide {
+        position: relative;
         img,
         video {
           width: 1050px;
@@ -309,14 +310,10 @@ body.modal-open {
           border-radius: 5px;
           object-position: 50% 40%;
         }
-      }
-
-      .image-right {
-        display: flex;
-        flex-direction: column;
-        height: 900px;
 
         .close-modal {
+          position: absolute;
+          right: -8rem;
           color: $secondary;
           font-size: 5rem;
           background: transparent;

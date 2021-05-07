@@ -27,12 +27,6 @@ function displayPhotographerSingle(singleData) {
     return b.likes - a.likes;
   });
 
-  // Total of Likes
-  const reducer = (acc, current) => ({
-    likes: acc.likes + current.likes,
-  });
-  const allLikes = photographerMedias.reduce(reducer);
-
   const htmlSingle = `<section
           class="photographer-presentation"
           role="region"
@@ -122,7 +116,7 @@ function displayPhotographerSingle(singleData) {
         <div class="extra-infos">
           <div class="wrapper-total-likes">
             <span class="hidden">Nombre total de j'aime</span>
-            <span class="total-likes"> ${allLikes.likes} </span>
+            <span class="total-likes"> ${getAllLikes()} </span>
             <i class="fas fa-heart heart-icon" aria-label="j'aime"></i>
           </div>
           <div class="price">
@@ -235,6 +229,31 @@ function filterWithDropdown() {
   `;
   mediaContainer.innerHTML = htmlMedias;
   addEventListenerOnNewElements();
+  resetTotalLikes();
+}
+
+// On dropdown filter change, reset total likes count
+function resetTotalLikes() {
+  const totalLikes = document.querySelector(".total-likes");
+  const content = totalLikes.childNodes[0];
+  totalLikes.removeChild(content);
+
+  const resetTotal = document.createTextNode(getAllLikes());
+  totalLikes.appendChild(resetTotal);
+}
+
+// Get the total count of likes
+function getAllLikes() {
+  // Photographer's medias...
+  const photographerMedias = medias.filter((media) => media.photographerId == id);
+
+  // Total of Likes
+  const reducer = (acc, current) => ({
+    likes: acc.likes + current.likes,
+  });
+  const allLikes = photographerMedias.reduce(reducer);
+
+  return allLikes.likes;
 }
 
 function openLightbox() {
