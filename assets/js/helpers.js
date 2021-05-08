@@ -3,23 +3,24 @@
 // ------ Pattern Factory Method ------
 export class MediaType {
   constructor() {
-    this.imageOrVideo = function (media) {
+    this.imageOrVideo = function (media, key) {
       let mediaWrapper;
 
       // If image url only
       if (media.image) {
         mediaWrapper = `
         <a href="javascript:void(0);" class="media-link">
-          <img src="./images/${media.image}" alt="${media.description}" loading="lazy" 
-                data-id="${media.id}" data-date="${media.date}" />
+          <img class="source-media" src="./images/${media.image}" 
+          alt="${media.description}" loading="lazy" data-id="${media.id}" data-index=${key} />
         </a>
         `;
         // If video url only
       } else if (media.video) {
         mediaWrapper = `
-        <a href="javascript:void(0);" class="media-link">
-          <video id="player" playsinline data-id="${media.id}" data-date="${media.date}" >
-            <source src="./images/${media.video}" type="video/mp4" />
+        <a href="javascript:void(0);" class="media-link" >
+          <video class="source-media" id="player" playsinline data-id="${media.id}" data-index=${key} >
+            <source src="./images/${media.video}" 
+            type="video/mp4" />
           </video>
         </a>
         `;

@@ -84,20 +84,20 @@ function displayPhotographerSingle(singleData) {
           <div class="media-wrapper">
 
           ${mediasSortBy
-            .map((media) => {
+            .map((media, key) => {
               // pattern Factory Method for differents media type
               const checkMediaType = new MediaType();
-              const mediaWrapper = checkMediaType.imageOrVideo(media);
+              const mediaWrapper = checkMediaType.imageOrVideo(media, key);
 
               return `
-            <div class="media-card">
+            <div class="media-card" data-date="${media.date}" data-title="${media.title}"
+            id="${media.title}" data-likes="${media.likes}">
               ${mediaWrapper}
               <div class="media-infos">
                 <div class="part-1">
                   <span class="media-title">${media.title}</span>
                 </div>
                 <div class="part-2">
-                  <span class="media-price">${media.price} €</span>
                   <span class="heart-wrapper">
                     <span class="heart-count">${media.likes}</span>
                     <i class="far fa-heart heart-empty heart-icon" aria-label="j'aime"></i>
@@ -145,7 +145,7 @@ function addEventListenerOnNewElements() {
   // EVENT LISTENER
   dropdown.addEventListener("change", filterWithDropdown);
   heartWrapper.forEach((heart) => heart.addEventListener("click", handleLikesCount));
-  medias.forEach((media) => media.addEventListener("click", openLightbox));
+  medias.forEach((media) => media.addEventListener("click", onOpenLightbox));
 }
 
 // Increment or decrement number of likes
@@ -172,74 +172,38 @@ function handleLikesCount() {
   totalLikesWrapper.innerHTML = `${totalNumberOfLikes}`;
 }
 
-// Filter medias with dropdown (a refacto)
+// Filter medias with dropdown
 function filterWithDropdown() {
   const mediaContainer = document.querySelector(".media-wrapper");
+  const mediaCards = Array.from(document.querySelectorAll(".media-card"));
   const dropdownValue = this.value;
 
-  // Photographer's medias...
-  const photographerMedias = medias.filter((media) => media.photographerId == singleData[0].id);
-
-  let mediasSortBy;
+  let mediasSortBy = "";
 
   if (dropdownValue === "title") {
-    // Sort by title
-    mediasSortBy = photographerMedias.sort(function (a, b) {
-      return a.title.localeCompare(b.title);
+    // sort by titles
+    mediasSortBy = mediaCards.sort(function (a, b) {
+      return a.getAttribute("data-title").localeCompare(b.getAttribute("data-title"));
     });
   } else if (dropdownValue === "date") {
     // Sort by date
-    mediasSortBy = photographerMedias.sort(function (a, b) {
-      return new Date(b.date) - new Date(a.date);
+    mediasSortBy = mediaCards.sort(function (a, b) {
+      return new Date(b.getAttribute("data-date")) - new Date(a.getAttribute("data-date"));
     });
   } else {
-    // ...sort by popularity by default
-    mediasSortBy = photographerMedias.sort(function (a, b) {
-      return b.likes - a.likes;
+    // Sort by popularity
+    mediasSortBy = mediaCards.sort(function (a, b) {
+      return b.getAttribute("data-likes") - a.getAttribute("data-likes");
     });
   }
 
-  const htmlMedias = `
-          ${mediasSortBy
-            .map((media) => {
-              // pattern Factory Method for differents media type
-              const checkMediaType = new MediaType();
-              const mediaWrapper = checkMediaType.imageOrVideo(media);
+  mediasSortBy.forEach((media, key) => {
+    mediaContainer.appendChild(media);
 
-              return `
-            <div class="media-card">
-              ${mediaWrapper}
-              <div class="media-infos">
-                <div class="part-1">
-                  <span class="media-title">${media.title}</span>
-                </div>
-                <div class="part-2">
-                  <span class="media-price">${media.price} €</span>
-                  <span class="heart-wrapper">
-                    <span class="heart-count">${media.likes}</span>
-                    <i class="far fa-heart heart-empty heart-icon" aria-label="j'aime"></i>
-                    <i class="fas fa-heart heart-full heart-icon hide" aria-label="j'aime"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            `;
-            })
-            .join("")}
-  `;
-  mediaContainer.innerHTML = htmlMedias;
-  addEventListenerOnNewElements();
-  resetTotalLikes();
-}
-
-// On dropdown filter change, reset total likes count
-function resetTotalLikes() {
-  const totalLikes = document.querySelector(".total-likes");
-  const content = totalLikes.childNodes[0];
-  totalLikes.removeChild(content);
-
-  const resetTotal = document.createTextNode(getAllLikes());
-  totalLikes.appendChild(resetTotal);
+    // Update the data-index attribute
+    const sourceMedia = media.querySelector(".source-media");
+    sourceMedia.setAttribute("data-index", key);
+  });
 }
 
 // Get the total count of likes
@@ -256,26 +220,115 @@ function getAllLikes() {
   return allLikes.likes;
 }
 
-function openLightbox() {
-  const body = document.querySelector("body.photographer-page");
-  const lightboxWrapper = document.querySelector(".lightbox-wrapper");
+// ******************************* LIGHTBOX EVENTS ******************************* //
 
-  // Prevent page scrolling when lightbox is open
-  body.classList.add("modal-open");
+// DOM ELEMENTS
+const body = document.querySelector("body.photographer-page");
+const main = document.querySelector("#main");
+const lightboxWrapper = document.querySelector(".lightbox-wrapper");
+const lightBoxContainer = document.querySelector(".lightbox-slide");
+const closeButton = document.querySelector(".close-modal");
+const prevBtn = document.querySelector(".swiper-button-prev");
+const nextBtn = document.querySelector(".swiper-button-next");
+const mediaContainer = document.querySelector(".media-wrapper");
+
+// EVENT LISTENERS
+closeButton.addEventListener("click", closeModal);
+body.addEventListener("keydown", handleKeyDown);
+prevBtn.addEventListener("click", navSlide(-1));
+nextBtn.addEventListener("click", navSlide(1));
+
+function onOpenLightbox() {
+  window.scrollTo(0, 0);
+  lightboxWrapper.classList.remove("hide");
+  body.classList.add("no-scroll");
+  main.setAttribute("aria-hidden", "true");
+  main.classList.add("hide");
+  lightboxWrapper.setAttribute("aria-hidden", "false");
+  closeButton.focus();
+
+  // Open the media clicked
+  const copyOfMedia = this.firstElementChild.cloneNode(true);
+  lightBoxContainer.insertBefore(copyOfMedia, closeButton);
+
+  addVideoControls();
+}
+
+function addVideoControls() {
+  const controls = document.createAttribute("controls");
+  const video = lightBoxContainer.querySelector("video");
+
+  if (video) {
+    video.setAttributeNode(controls);
+  }
+}
+
+function handleKeyDown(e) {
+  const lightboxWrapper = document.querySelector(".lightbox-wrapper");
+  const keyCode = e.keyCode ? e.keyCode : e.which;
+
+  if (lightboxWrapper.getAttribute("aria-hidden") == "false") {
+    switch (keyCode) {
+      case 27:
+        closeModal();
+        break;
+      case 37:
+        prevBtn.click();
+        break;
+      case 39:
+        nextBtn.click();
+      default:
+        return;
+    }
+  }
+}
+
+function closeModal() {
+  // Remove the media
+  const oldMedia = lightBoxContainer.firstElementChild;
+
+  lightBoxContainer.removeChild(oldMedia);
+
+  body.classList.remove("no-scroll");
+  main.setAttribute("aria-hidden", "false");
+  main.classList.remove("hide");
+  lightboxWrapper.setAttribute("aria-hidden", "true");
+  lightboxWrapper.classList.add("hide");
+}
+
+function navSlide(number) {
+  return function () {
+    const sourceMedia = document.querySelector(".lightbox-slide .source-media");
+    const index = sourceMedia.getAttribute("data-index");
+    const nextIndex = number + parseInt(index);
+
+    // if we are not one the first media or the last media
+    if (nextIndex !== -1 && totalNumberOfMedias() !== nextIndex) {
+      const actualMedia = lightBoxContainer.querySelector(`.source-media[data-index="${index}"]`);
+      const futurElement = mediaContainer.querySelector(`.source-media[data-index="${nextIndex}"]`);
+      const copyOfFuturMedia = futurElement.cloneNode(true);
+
+      lightBoxContainer.removeChild(actualMedia);
+      lightBoxContainer.insertBefore(copyOfFuturMedia, closeButton);
+      addVideoControls();
+    }
+  };
+}
+
+// return the total number of medias on this profil
+function totalNumberOfMedias() {
+  const allMediasIndex = Array.from(mediaContainer.querySelectorAll("[data-index]"));
+  const indexArray = [];
+
+  allMediasIndex.forEach((media) => {
+    const index = media.getAttribute("data-index");
+    indexArray.push(index);
+  });
+
+  return Math.max(...indexArray) + 1;
 }
 
 // ******************************* A FAIRE  ******************************* //
 
-// Incrémentation du nombre de like au clic (+ total) => local Storage ?
-
-// HTML / CSS lightbox et form
-
-// Lightbox au clic sur média (naviguable)
-// LightBox video player, add "controls" :
-// <video id="player" playsinline controls>
-//   <source src="./images/${media.video}" type="video/mp4" />
-// </video>;
-
+// HTML / CSS Form
 // Modal au clic sur "Contactez-moi"
-
-// Commit + push

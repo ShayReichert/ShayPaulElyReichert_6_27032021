@@ -19,7 +19,7 @@
       </div>
     </header>
 
-    <main id="main" role="main">
+    <main id="main" role="main" aria-hidden="false">
       <div class="single-wrapper" aria-label="Profil du photographe">
         <!--  Data injected by photographer.js  -->
       </div>
@@ -27,7 +27,7 @@
 
     <!-- Lightbox -->
     <div
-      class="lightbox-wrapper"
+      class="lightbox-wrapper hide"
       role="dialog"
       aria-label="Affichage agrandi des médias"
       aria-modal="true"
@@ -36,17 +36,14 @@
     >
       <div class="modal-content">
         <div class="modal-body">
-          <a href="javascript:void(0);" class="btn-icon swiper-button-prev">
+          <a href="javascript:void(0);" class="btn-icon swiper-button-prev" tab-index="2">
             <i class="fas fa-chevron-left icon-arrow" aria-hidden="true"></i>
             <span class="hidden">Média précédent</span>
           </a>
 
           <div class="lightbox-slide fade">
-            <img
-              src="../assets/images/Animals_Rainbow.jpg"
-              alt="Rollier à longs brins, plan serré"
-            />
-            <button class="close-modal" aria-label="fermer la modale">
+            <!--  Data injected by photographer.js  -->
+            <button class="close-modal" aria-label="fermer la modale" tab-index="1">
               <i class="fas fa-times"></i>
             </button>
           </div>
