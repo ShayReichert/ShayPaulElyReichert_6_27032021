@@ -21,7 +21,7 @@
 
     <main id="main" role="main" aria-hidden="false">
       <div class="single-wrapper" aria-label="Profil du photographe">
-        <!--  Data injected by photographer.js  -->
+        <!--  Data injected from photographer.js  -->
       </div>
     </main>
 
@@ -36,14 +36,14 @@
     >
       <div class="modal-content">
         <div class="modal-body">
-          <a href="javascript:void(0);" class="btn-icon swiper-button-prev" tab-index="2">
+          <a href="javascript:void(0);" class="btn-icon swiper-button-prev">
             <i class="fas fa-chevron-left icon-arrow" aria-hidden="true"></i>
             <span class="hidden">Média précédent</span>
           </a>
 
           <div class="lightbox-slide fade">
-            <!--  Data injected by photographer.js  -->
-            <button class="close-modal" aria-label="fermer la modale" tab-index="1">
+            <!--  Data injected from photographer.js  -->
+            <button class="close-lightbox" aria-label="fermer la modale">
               <i class="fas fa-times"></i>
             </button>
           </div>
@@ -52,6 +52,88 @@
             <i class="fas fa-chevron-right icon-arrow" aria-hidden="true"></i>
             <span class="hidden">Média suivant</span>
           </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Contact -->
+    <div
+      class="contactform-wrapper hide"
+      role="dialog"
+      aria-labelledby="contact-me"
+      aria-modal="true"
+      aria-hidden="true"
+      tab-index="-1"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 id="contact-me">
+            Contactez-moi
+            <span class="photographer-name">
+              <!--  Name injected from photographer.js  -->
+            </span>
+          </h1>
+
+          <button class="close-contact" aria-label="fermer la modale" tab-index="1">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form name="contact" method="post" action="#" onsubmit="return handleSubmit(e);">
+            <div class="form-data" data-error="Veuillez renseigner un prénom">
+              <label id="first-name-label" for="first-name">Prénom</label>
+              <input
+                id="first-name"
+                class="inputs name-input"
+                aria-labelledby="first-name-label"
+                aria-invalid="false"
+                aria-required="true"
+                required
+              />
+            </div>
+
+            <div class="form-data" data-error="Veuillez renseigner un nom">
+              <label id="last-name-label" for="last-name">Nom</label>
+              <input
+                id="last-name"
+                class="inputs name-input"
+                aria-labelledby="last-name-label"
+                aria-invalid="false"
+                aria-required="true"
+                required
+              />
+            </div>
+
+            <div class="form-data" data-error="Vous devez entrer une adresse mail valide">
+              <label id="email-label" for="email">Email</label>
+              <input
+                id="email"
+                class="inputs"
+                type="email"
+                aria-labelledby="email-label"
+                aria-invalid="false"
+                aria-required="true"
+                required
+              />
+            </div>
+
+            <div class="form-data" data-error="Ce champ est requis">
+              <label id="message-label" for="message">Votre message</label>
+              <textarea
+                id="message"
+                class="inputs"
+                aria-labelledby="message-label"
+                aria-invalid="false"
+                aria-required="true"
+                required
+              ></textarea>
+            </div>
+
+            <div class="submit-wrapper">
+              <input class="btn btn-submit" type="submit" value="Envoyer" />
+            </div>
+          </form>
         </div>
       </div>
     </div>

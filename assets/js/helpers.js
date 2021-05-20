@@ -6,7 +6,7 @@ export class MediaType {
     this.imageOrVideo = function (media, key) {
       let mediaWrapper;
 
-      // If image url only
+      // IMAGE
       if (media.image) {
         mediaWrapper = `
         <a href="javascript:void(0);" class="media-link">
@@ -14,7 +14,7 @@ export class MediaType {
           alt="${media.description}" loading="lazy" data-id="${media.id}" data-index=${key} />
         </a>
         `;
-        // If video url only
+        // VIDEO
       } else if (media.video) {
         mediaWrapper = `
         <a href="javascript:void(0);" class="media-link" >

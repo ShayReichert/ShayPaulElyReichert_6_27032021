@@ -264,13 +264,14 @@ body.photographer-page {
   }
 }
 
-// LightBox
+// Modals
 body.no-scroll {
   height: 100vh;
   overflow-y: hidden;
 }
 
-.lightbox-wrapper {
+.lightbox-wrapper,
+.contactform-wrapper {
   position: absolute;
   top: 0;
   right: 0;
@@ -280,7 +281,10 @@ body.no-scroll {
   width: 100vw;
   background-color: $white;
   z-index: 10;
+}
 
+// Modal : LightBox
+.lightbox-wrapper {
   .modal-content {
     height: 100%;
 
@@ -303,6 +307,7 @@ body.no-scroll {
 
         &.swiper-button-prev {
           margin-right: 4rem;
+          opacity: 1;
 
           &:hover {
             opacity: 0.8;
@@ -315,6 +320,7 @@ body.no-scroll {
 
         &.swiper-button-next {
           margin-left: 4rem;
+          opacity: 1;
 
           &:hover {
             opacity: 0.8;
@@ -328,6 +334,17 @@ body.no-scroll {
 
       .lightbox-slide {
         position: relative;
+
+        &:before {
+          content: "";
+          min-width: 35vw;
+          height: 1px;
+          background: transparent;
+          position: absolute;
+          display: block;
+          z-index: -1;
+        }
+
         img,
         video {
           height: 90vh;
@@ -342,7 +359,7 @@ body.no-scroll {
           }
         }
 
-        .close-modal {
+        .close-lightbox {
           position: absolute;
           right: -8rem;
           color: $secondary;
@@ -358,6 +375,125 @@ body.no-scroll {
           @include screen-max($sm) {
             font-size: 2rem;
             right: -2.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Modal : ContactForm
+.contactform-wrapper {
+  background-color: $bg-modal;
+  overflow-y: scroll;
+
+  @include screen-max($sm) {
+    bottom: auto;
+  }
+
+  .modal-content {
+    background: $secondary-bg;
+    border-radius: 5px;
+    width: 66rem;
+    margin: 6rem auto;
+    padding: 3.5rem;
+
+    @include screen-max($sm) {
+      width: 100%;
+      height: 100vh;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      h1 {
+        color: black;
+        font-size: 6.4rem;
+        margin-top: 0;
+
+        @include screen-max($sm) {
+          font-size: 3.6rem;
+          margin-bottom: 3rem;
+        }
+
+        .photographer-name {
+          display: block;
+        }
+      }
+
+      .close-contact {
+        color: $white;
+        font-size: 5rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        @include screen-max($sm) {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    .modal-body {
+      .form-data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        label {
+          font-size: 3.6rem;
+          color: $dark-grey;
+          margin-bottom: 0.5rem;
+
+          @include screen-max($sm) {
+            font-size: 2.4rem;
+          }
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          margin-bottom: 2rem;
+          border-radius: 5px;
+
+          @include screen-max($sm) {
+            font-size: 2.4rem;
+          }
+        }
+
+        input {
+          height: 6.8rem;
+
+          @include screen-max($sm) {
+            height: 5.2rem;
+          }
+        }
+
+        textarea {
+          min-height: 18rem;
+        }
+      }
+
+      .submit-wrapper {
+        @include screen-max($sm) {
+          display: flex;
+          justify-content: center;
+        }
+
+        .btn-submit {
+          padding: 2.1rem 5.1rem;
+
+          @include screen-max($sm) {
+            margin: auto;
+            padding: 0.5rem 4rem;
           }
         }
       }

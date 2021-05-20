@@ -2,7 +2,9 @@ require("../assets/stylesheets/main.scss");
 import data from "../data.json";
 import { MediaType, extractValueFromUrl, elementReady } from "../assets/js/helpers";
 
+//************************************************************************************************ //
 // ******************************* PHOTOGRAPHER SINGLE PAGE ON LOAD ******************************* //
+//************************************************************************************************ //
 
 // GLOBAL VARIABLES
 const singleContainer = document.querySelector(".single-wrapper");
@@ -98,7 +100,7 @@ function displayPhotographerSingle(singleData) {
                   <span class="media-title">${media.title}</span>
                 </div>
                 <div class="part-2">
-                  <span class="heart-wrapper">
+                  <span class="heart-wrapper" tabindex="0">
                     <span class="heart-count">${media.likes}</span>
                     <i class="far fa-heart heart-empty heart-icon" aria-label="j'aime"></i>
                     <i class="fas fa-heart heart-full heart-icon hide" aria-label="j'aime"></i>
@@ -128,24 +130,25 @@ function displayPhotographerSingle(singleData) {
   singleContainer.innerHTML = htmlSingle;
 }
 
+//************************************************************************************************ //
 // ******************************* PHOTOGRAPHER SINGLE EVENTS ******************************* //
+//************************************************************************************************ //
 
-// AFTER DOM IS COMPLETLY LOAD
+// AFTER HTML IS COMPLETLY LOAD
 elementReady(".photographer-page").then(() => {
   addEventListenerOnNewElements();
 });
 
 // DOM ELEMENTS & EVENT LISTENER
 function addEventListenerOnNewElements() {
-  // DOM ELEMENTS
   const dropdown = document.querySelector("#filter");
   const heartWrapper = document.querySelectorAll(".heart-wrapper");
   const medias = document.querySelectorAll(".media-link");
 
-  // EVENT LISTENER
   dropdown.addEventListener("change", filterWithDropdown);
   heartWrapper.forEach((heart) => heart.addEventListener("click", handleLikesCount));
-  medias.forEach((media) => media.addEventListener("click", onOpenLightbox));
+  heartWrapper.forEach((heart) => heart.addEventListener("keydown", handleEnterDown));
+  medias.forEach((media) => media.addEventListener("click", openLightbox));
 }
 
 // Increment or decrement number of likes
@@ -220,40 +223,53 @@ function getAllLikes() {
   return allLikes.likes;
 }
 
+// Accessibility : click an element with Enter key
+function handleEnterDown(e) {
+  const keyCode = e.keyCode ? e.keyCode : e.which;
+
+  if (keyCode === 13) {
+    this.click();
+  }
+}
+
+//************************************************************************************************ //
 // ******************************* LIGHTBOX EVENTS ******************************* //
+//************************************************************************************************ //
 
 // DOM ELEMENTS
 const body = document.querySelector("body.photographer-page");
 const main = document.querySelector("#main");
 const lightboxWrapper = document.querySelector(".lightbox-wrapper");
 const lightBoxContainer = document.querySelector(".lightbox-slide");
-const closeButton = document.querySelector(".close-modal");
+const closeLightboxBtn = document.querySelector(".close-lightbox");
 const prevBtn = document.querySelector(".swiper-button-prev");
 const nextBtn = document.querySelector(".swiper-button-next");
 const mediaContainer = document.querySelector(".media-wrapper");
 
 // EVENT LISTENERS
-closeButton.addEventListener("click", closeModal);
-body.addEventListener("keydown", handleKeyDown);
+closeLightboxBtn.addEventListener("click", closeLightbox);
+lightboxWrapper.addEventListener("keydown", handleKeysDown);
 prevBtn.addEventListener("click", navSlide(-1));
 nextBtn.addEventListener("click", navSlide(1));
 
-function onOpenLightbox() {
+// Open lightbox
+function openLightbox() {
   window.scrollTo(0, 0);
   lightboxWrapper.classList.remove("hide");
   body.classList.add("no-scroll");
   main.setAttribute("aria-hidden", "true");
   main.classList.add("hide");
   lightboxWrapper.setAttribute("aria-hidden", "false");
-  closeButton.focus();
+  closeLightboxBtn.focus();
 
   // Open the media clicked
   const copyOfMedia = this.firstElementChild.cloneNode(true);
-  lightBoxContainer.insertBefore(copyOfMedia, closeButton);
+  lightBoxContainer.insertBefore(copyOfMedia, closeLightboxBtn);
 
   addVideoControls();
 }
 
+// Add video controls if this media is a video
 function addVideoControls() {
   const controls = document.createAttribute("controls");
   const video = lightBoxContainer.querySelector("video");
@@ -263,27 +279,26 @@ function addVideoControls() {
   }
 }
 
-function handleKeyDown(e) {
-  const lightboxWrapper = document.querySelector(".lightbox-wrapper");
+// Accessibility : navigate with keys
+function handleKeysDown(e) {
   const keyCode = e.keyCode ? e.keyCode : e.which;
 
-  if (lightboxWrapper.getAttribute("aria-hidden") == "false") {
-    switch (keyCode) {
-      case 27:
-        closeModal();
-        break;
-      case 37:
-        prevBtn.click();
-        break;
-      case 39:
-        nextBtn.click();
-      default:
-        return;
-    }
+  switch (keyCode) {
+    case 27:
+      closeLightbox();
+      break;
+    case 37:
+      prevBtn.click();
+      break;
+    case 39:
+      nextBtn.click();
+    default:
+      return;
   }
 }
 
-function closeModal() {
+// Close the lightbox
+function closeLightbox() {
   // Remove the media
   const oldMedia = lightBoxContainer.firstElementChild;
 
@@ -296,26 +311,40 @@ function closeModal() {
   lightboxWrapper.classList.add("hide");
 }
 
+// Handle navigation between medias
 function navSlide(number) {
   return function () {
     const sourceMedia = document.querySelector(".lightbox-slide .source-media");
     const index = sourceMedia.getAttribute("data-index");
     const nextIndex = number + parseInt(index);
+    const prevArrow = document.querySelector(".swiper-button-prev");
+    const nextArrow = document.querySelector(".swiper-button-next");
 
     // if we are not one the first media or the last media
     if (nextIndex !== -1 && totalNumberOfMedias() !== nextIndex) {
       const actualMedia = lightBoxContainer.querySelector(`.source-media[data-index="${index}"]`);
       const futurElement = mediaContainer.querySelector(`.source-media[data-index="${nextIndex}"]`);
       const copyOfFuturMedia = futurElement.cloneNode(true);
+      prevArrow.style.opacity = 1;
+      nextArrow.style.opacity = 1;
 
       lightBoxContainer.removeChild(actualMedia);
-      lightBoxContainer.insertBefore(copyOfFuturMedia, closeButton);
+      lightBoxContainer.insertBefore(copyOfFuturMedia, closeLightboxBtn);
       addVideoControls();
+    }
+
+    // if we are on the first media
+    else if (nextIndex === -1) {
+      prevArrow.style.opacity = 0.5;
+
+      // if we are on the last media
+    } else if (totalNumberOfMedias() === nextIndex) {
+      nextArrow.style.opacity = 0.5;
     }
   };
 }
 
-// return the total number of medias on this profil
+// Return the total number of medias on this profil
 function totalNumberOfMedias() {
   const allMediasIndex = Array.from(mediaContainer.querySelectorAll("[data-index]"));
   const indexArray = [];
@@ -328,7 +357,107 @@ function totalNumberOfMedias() {
   return Math.max(...indexArray) + 1;
 }
 
-// ******************************* A FAIRE  ******************************* //
+//************************************************************************************************ //
+// ******************************* CONTACTFORM EVENTS ******************************* //
+//************************************************************************************************ //
 
-// HTML / CSS Form
-// Modal au clic sur "Contactez-moi"
+// DOM ELEMENTS
+const contactformWrapper = document.querySelector(".contactform-wrapper");
+const contactBtn = document.querySelector(".contact .btn-submit");
+const closeContactBtn = contactformWrapper.querySelector(".close-contact");
+const names = contactformWrapper.querySelectorAll(".name-input");
+const email = contactformWrapper.querySelector("#email");
+const submitContactBtn = contactformWrapper.querySelector(".submit-wrapper .btn-submit");
+const nameContainer = contactformWrapper.querySelector(".photographer-name");
+
+// EVENT LISTENERS
+contactBtn.addEventListener("click", openContactForm);
+closeContactBtn.addEventListener("click", closeContactForm);
+names.forEach((input) => input.addEventListener("keyup", checkName));
+email.addEventListener("keyup", checkEmail);
+submitContactBtn.addEventListener("click", handleSubmit);
+
+// Open the contact form
+function openContactForm() {
+  window.scrollTo(0, 0);
+  contactformWrapper.classList.remove("hide");
+  body.classList.add("no-scroll");
+  main.setAttribute("aria-hidden", "true");
+  contactformWrapper.setAttribute("aria-hidden", "false");
+  closeContactBtn.focus();
+
+  // Dynamic Name
+  const dynamiclName = singleData[0].name;
+  nameContainer.innerHTML = dynamiclName;
+}
+
+// Close the contact form
+function closeContactForm() {
+  body.classList.remove("no-scroll");
+  main.setAttribute("aria-hidden", "false");
+  main.classList.remove("hide");
+  contactformWrapper.setAttribute("aria-hidden", "true");
+  contactformWrapper.classList.add("hide");
+}
+
+// Single errors checkers for names inputs
+function checkName() {
+  const regex = /\w\w+/;
+  checkWithRegex(this, regex);
+}
+
+// Single errors checkers for emails inputs
+function checkEmail() {
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  checkWithRegex(this, regex);
+}
+
+// General Errors checker
+function checkWithRegex(element, regex) {
+  const formData = element.parentNode;
+  const input = element.value;
+  const isValid = regex.test(input);
+
+  setAttributes(isValid, formData);
+}
+
+// Handle invalid inputs
+function setAttributes(isValid, element) {
+  const input = element.querySelector("input");
+
+  if (isValid) {
+    input.style.outline = "3px solid green";
+    element.setAttribute("data-validate", "yes");
+  } else {
+    input.style.outline = "3px solid red";
+    element.setAttribute("data-validate", "no");
+  }
+}
+
+// On contact form submit
+function handleSubmit(e) {
+  const invalides = document.querySelectorAll("[data-validate='no']").length;
+  const inputs = document.querySelectorAll(".contactform-wrapper .inputs");
+
+  e.preventDefault();
+
+  // check if a input is empty
+  inputs.forEach((input) => {
+    input.value ? "" : input.parentNode.setAttribute("data-error-visible", "true");
+  });
+
+  if (!invalides) {
+    handleSuccess(inputs);
+  } else {
+    return false;
+  }
+}
+
+// Handle close button if form submit success
+function handleSuccess(inputs) {
+  inputs.forEach((input) => {
+    console.log(input.value);
+  });
+
+  closeContactForm();
+}
