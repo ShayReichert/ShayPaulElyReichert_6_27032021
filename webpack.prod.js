@@ -7,7 +7,9 @@ const common = require("./webpack.common.js");
 let config = merge(common, {
   mode: "production",
   devtool: "source-map",
-
+  output: {
+    path: path.resolve(__dirname, "./public"),
+  },
   optimization: {
     minimize: true,
     minimizer: [`...`, new TerserPlugin()],

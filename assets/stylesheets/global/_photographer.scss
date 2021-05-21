@@ -140,125 +140,149 @@ body.photographer-page {
           display: none;
         }
 
+        // Dropdown
         .custom-select-wrapper {
           position: relative;
           user-select: none;
           margin: 0 3rem;
           min-width: 17rem;
-        }
-        .custom-select {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          border-radius: 5px;
-        }
-        .custom-select__trigger {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 2.2rem;
-          font-size: 1.8rem;
-          font-weight: 300;
-          color: $white;
-          height: 6rem;
-          line-height: 3rem;
-          background: $secondary;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-        .custom-options {
-          position: absolute;
-          display: block;
-          top: 100%;
-          left: 0;
-          right: 0;
-          border-top: 0;
-          background: $secondary;
-          transition: all 0.5s;
-          opacity: 0;
-          visibility: hidden;
-          pointer-events: none;
-          z-index: 2;
-          border-radius: 0 0 5px 5px;
-        }
-        .custom-select.open {
+
+          &:hover .custom-select__trigger,
+          &:focus .custom-select__trigger {
+            color: $black;
+            background-color: $secondary-bg;
+          }
+
+          &:hover .arrow::before,
+          &:focus .arrow::before,
+          &:hover .arrow::after,
+          &:focus .arrow::after {
+            background-color: $black !important;
+          }
+
+          .custom-select {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+
+            &.open {
+              .custom-select__trigger {
+                border-radius: 5px 5px 0 0;
+              }
+
+              .custom-options {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: all;
+              }
+
+              .arrow::before {
+                left: -3px;
+                transform: rotate(-45deg);
+              }
+              .arrow::after {
+                left: 4px;
+                transform: rotate(45deg);
+              }
+            }
+          }
+
           .custom-select__trigger {
-            border-radius: 5px 5px 0 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 6rem;
+            color: $white;
+            background: $secondary;
+            padding: 0 2.2rem;
+            font-size: 1.8rem;
+            font-weight: 300;
+            line-height: 3rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.5s;
+
+            // Arrow
+            .arrow {
+              position: relative;
+              height: 1.2rem;
+              width: 1.2rem;
+              margin-left: 4rem;
+
+              &:before,
+              &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                width: 3px;
+                height: 100%;
+                transition: all 0.5s;
+              }
+
+              &:before {
+                left: -3px;
+                transform: rotate(45deg);
+                background-color: $white;
+              }
+              &:after {
+                left: 4px;
+                transform: rotate(-45deg);
+                background-color: $white;
+              }
+            }
           }
 
           .custom-options {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: all;
+            position: absolute;
+            display: block;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border-top: 0;
+            border-radius: 0 0 5px 5px;
+            background: $secondary;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 2;
+            transition: all 0.5s;
+
+            .custom-option {
+              position: relative;
+              display: block;
+              padding: 0 2.2rem;
+              font-size: 1.8rem;
+              font-weight: 300;
+              color: white;
+              line-height: 6rem;
+              cursor: pointer;
+              transition: all 0.5s;
+
+              &:hover,
+              &:focus {
+                cursor: pointer;
+                color: $black;
+                background-color: $secondary-bg;
+              }
+
+              &.selected {
+                font-weight: bold;
+              }
+            }
+
+            .custom-option:not(:last-child)::after {
+              content: "";
+              height: 1px;
+              width: 90%;
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              background: $white;
+            }
           }
-        }
-
-        .custom-option {
-          position: relative;
-          display: block;
-          padding: 0 2.2rem;
-          font-size: 1.8rem;
-          font-weight: 300;
-          color: white;
-          line-height: 6rem;
-          cursor: pointer;
-          transition: all 0.5s;
-
-          &:hover {
-            cursor: pointer;
-            background-color: darken($secondary, 10%);
-          }
-
-          &.selected {
-            color: darken($white, 20%);
-          }
-        }
-
-        .custom-option:not(:last-child)::after {
-          content: "";
-          height: 1px;
-          width: 90%;
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          background: $white;
-        }
-
-        // arrow
-        .arrow {
-          position: relative;
-          height: 1.2rem;
-          width: 1.2rem;
-          margin-left: 4rem;
-        }
-        .arrow::before,
-        .arrow::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          width: 3px;
-          height: 100%;
-          transition: all 0.5s;
-        }
-        .arrow::before {
-          left: -3px;
-          transform: rotate(45deg);
-          background-color: $white;
-        }
-        .arrow::after {
-          left: 4px;
-          transform: rotate(-45deg);
-          background-color: $white;
-        }
-        .open .arrow::before {
-          left: -3px;
-          transform: rotate(-45deg);
-        }
-        .open .arrow::after {
-          left: 4px;
-          transform: rotate(45deg);
         }
 
         #sort-by {
@@ -269,6 +293,7 @@ body.photographer-page {
       .media-wrapper {
         @include flex-center($justify: space-between);
         row-gap: 8rem;
+        margin-bottom: 5rem;
 
         @include screen-max($sm) {
           row-gap: 5rem;

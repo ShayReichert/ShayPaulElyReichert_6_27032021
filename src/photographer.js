@@ -1,6 +1,6 @@
 require("../assets/stylesheets/main.scss");
 import data from "../data.json";
-import { MediaType, extractValueFromUrl, elementReady } from "../assets/js/helpers";
+import { MediaType, extractValueFromUrl, CreateComponent, elementReady } from "../assets/js/helpers";
 
 //************************************************************************************************ //
 // ******************************* PHOTOGRAPHER SINGLE PAGE ON LOAD ******************************* //
@@ -41,16 +41,7 @@ function displayPhotographerSingle(singleData) {
               <p class="tagline">${tagline}</p>
               <div class="tags-wrapper">
 
-              ${tags
-                .map((tag) => {
-                  return `
-                <a href="/?tag=${tag}" class="tags" data-tag="${tag}">
-                  #${tag}
-                  <span class="hidden" aria-label="Tag">${tag}</span>
-                </a>
-                  `;
-                })
-                .join("")}
+               ${new CreateComponent().tagsComponent(tags)}
 
               </div>
             </div>
@@ -75,15 +66,15 @@ function displayPhotographerSingle(singleData) {
           <div class="sort">
             <label for="filter" id="sort_by">Trier par</label>
 
-            <div class="custom-select-wrapper">
+            <div class="custom-select-wrapper" tabindex="0">
               <div class="custom-select">
                 <div class="custom-select__trigger"><span>Popularité</span>
                   <div class="arrow"></div>
                 </div>
                 <div class="custom-options" aria-labelledby="sort_by">
-                  <span class="custom-option selected" data-value="likes">Popularité</span>
-                  <span class="custom-option" data-value="date">Date</span>
-                  <span class="custom-option" data-value="title">Titre</span>
+                  <span class="custom-option selected" data-value="likes" tabindex="0" >Popularité</span>
+                  <span class="custom-option" data-value="date" tabindex="0">Date</span>
+                  <span class="custom-option" data-value="title" tabindex="0">Titre</span>
                 </div>
               </div>
             </div>
@@ -107,9 +98,9 @@ function displayPhotographerSingle(singleData) {
                 </div>
                 <div class="part-2">
                   <span class="heart-wrapper" tabindex="0">
-                    <span class="heart-count">${media.likes}</span>
-                    <i class="far fa-heart heart-empty heart-icon" aria-label="j'aime"></i>
-                    <i class="fas fa-heart heart-full heart-icon hide" aria-label="j'aime"></i>
+                    <span class="heart-count" aria-label="Ajouter un j'aime">${media.likes}</span>
+                    <i class="far fa-heart heart-empty heart-icon"></i>
+                    <i class="fas fa-heart heart-full heart-icon hide"></i>
                   </span>
                 </div>
               </div>
@@ -148,11 +139,13 @@ elementReady(".photographer-page").then(() => {
 // DOM ELEMENTS & EVENT LISTENER
 function addEventListenerOnNewElements() {
   const dropdown = document.querySelector(".custom-select-wrapper");
+  const optionsDropdown = document.querySelectorAll(".custom-option");
   const heartWrapper = document.querySelectorAll(".heart-wrapper");
   const medias = document.querySelectorAll(".media-link");
 
-  // dropdown.addEventListener("change", filterWithDropdown);
+  dropdown.addEventListener("keydown", handleEnterDown);
   dropdown.addEventListener("click", handleDropdown);
+  optionsDropdown.forEach((option) => option.addEventListener("keydown", handleEnterDown));
   heartWrapper.forEach((heart) => heart.addEventListener("click", handleLikesCount));
   heartWrapper.forEach((heart) => heart.addEventListener("keydown", handleEnterDown));
   medias.forEach((media) => media.addEventListener("click", openLightbox));
@@ -291,7 +284,7 @@ function openLightbox() {
   closeLightboxBtn.focus();
 
   // Open the media clicked
-  const copyOfMedia = this.firstElementChild.cloneNode(true);
+  const copyOfMedia = this.cloneNode(true);
   lightBoxContainer.insertBefore(copyOfMedia, closeLightboxBtn);
 
   addVideoControls();
@@ -350,8 +343,8 @@ function navSlide(number) {
 
     // if we are not one the first media or the last media
     if (nextIndex !== -1 && totalNumberOfMedias() !== nextIndex) {
-      const actualMedia = lightBoxContainer.querySelector(`.source-media[data-index="${index}"]`);
-      const futurElement = mediaContainer.querySelector(`.source-media[data-index="${nextIndex}"]`);
+      const actualMedia = lightBoxContainer.querySelector(`.source-media[data-index="${index}"]`).parentNode;
+      const futurElement = mediaContainer.querySelector(`.source-media[data-index="${nextIndex}"]`).parentNode;
       const copyOfFuturMedia = futurElement.cloneNode(true);
       prevArrow.style.opacity = 1;
       nextArrow.style.opacity = 1;

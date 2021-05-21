@@ -1,6 +1,6 @@
 require("../assets/stylesheets/main.scss");
 import data from "../data.json";
-import { extractValueFromUrl } from "../assets/js/helpers";
+import { extractValueFromUrl, CreateComponent } from "../assets/js/helpers";
 
 // ******************************* HOMEPAGE DATA ON LOAD ******************************* //
 
@@ -22,18 +22,9 @@ function displayAllTags(data) {
     });
   });
 
-  const htmlTags = Array.from(uniqueTags)
-    .map((tag) => {
-      return `
-      <a href="?tag=${tag}" class="tags" data-tag="${tag}">
-        #${tag}
-        <span class="hidden" aria-label="Tag">${tag}</span>
-      </a>
-      `;
-    })
-    .join("");
-
-  tagsContainer.innerHTML = htmlTags;
+  const htmlTags = Array.from(uniqueTags);
+  const mediaWrapper = new CreateComponent().tagsComponent(htmlTags);
+  tagsContainer.innerHTML = mediaWrapper;
 }
 
 // Display all photographer into card component
@@ -55,17 +46,8 @@ function displayPhotographers(data) {
           </div>
           <div class="tags-wrapper">
 
-            ${card.tags
-              .map((tag) => {
-                return `
-                <a href="?tag=${tag}" class="tags" data-tag="${tag}">
-                    #${tag}
-                    <span class="hidden" aria-label="Tag">${tag}</span>
-                </a>
-                `;
-              })
-              .join("")}
-     
+            ${new CreateComponent().tagsComponent(card.tags)}
+
           </div>
         </div>
         `;
