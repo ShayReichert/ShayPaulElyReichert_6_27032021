@@ -364,6 +364,7 @@ function totalNumberOfMedias() {
 // DOM ELEMENTS
 const contactformWrapper = document.querySelector(".contactform-wrapper");
 const contactBtn = document.querySelector(".contact .btn-submit");
+const contactformContent = contactformWrapper.querySelector(".modal-content");
 const closeContactBtn = contactformWrapper.querySelector(".close-contact");
 const names = contactformWrapper.querySelectorAll(".name-input");
 const email = contactformWrapper.querySelector("#email");
@@ -393,6 +394,9 @@ function openContactForm() {
 
 // Close the contact form
 function closeContactForm() {
+  if (contactformContent.classList.contains("animate-on-close")) {
+    contactformContent.classList.remove("animate-on-close");
+  }
   body.classList.remove("no-scroll");
   main.setAttribute("aria-hidden", "false");
   main.classList.remove("hide");
@@ -457,7 +461,12 @@ function handleSubmit(e) {
 function handleSuccess(inputs) {
   inputs.forEach((input) => {
     console.log(input.value);
+    input.value = "";
   });
 
-  closeContactForm();
+  contactformContent.classList.add("animate-on-close");
+
+  setTimeout(() => {
+    closeContactForm();
+  }, 500);
 }

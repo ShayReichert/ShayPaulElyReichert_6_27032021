@@ -397,6 +397,12 @@ body.no-scroll {
     width: 66rem;
     margin: 6rem auto;
     padding: 3.5rem;
+    transition: all 500ms;
+
+    &.animate-on-close {
+      transform: translate3d(0, -100vh, -10rem);
+      opacity: 0;
+    }
 
     @include screen-max($sm) {
       width: 100%;
