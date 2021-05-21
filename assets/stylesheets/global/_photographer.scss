@@ -140,35 +140,125 @@ body.photographer-page {
           display: none;
         }
 
+        .custom-select-wrapper {
+          position: relative;
+          user-select: none;
+          margin: 0 3rem;
+          min-width: 17rem;
+        }
         .custom-select {
           position: relative;
-          margin: 0 3rem;
+          display: flex;
+          flex-direction: column;
+          border-radius: 5px;
+        }
+        .custom-select__trigger {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 2.2rem;
+          font-size: 1.8rem;
+          font-weight: 300;
+          color: $white;
+          height: 6rem;
+          line-height: 3rem;
+          background: $secondary;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+        .custom-options {
+          position: absolute;
+          display: block;
+          top: 100%;
+          left: 0;
+          right: 0;
+          border-top: 0;
+          background: $secondary;
+          transition: all 0.5s;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          z-index: 2;
+          border-radius: 0 0 5px 5px;
+        }
+        .custom-select.open {
+          .custom-select__trigger {
+            border-radius: 5px 5px 0 0;
+          }
 
-          &:after {
-            content: "<";
-            position: absolute;
-            top: 1.4rem;
-            right: 1.4rem;
-            color: $white;
-            font-family: $font-default;
-            transform: rotate(-90deg);
-            font-size: 3rem;
-            font-weight: 400;
-            pointer-events: none;
+          .custom-options {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
           }
         }
 
-        select::-ms-expand {
-          display: none;
+        .custom-option {
+          position: relative;
+          display: block;
+          padding: 0 2.2rem;
+          font-size: 1.8rem;
+          font-weight: 300;
+          color: white;
+          line-height: 6rem;
+          cursor: pointer;
+          transition: all 0.5s;
+
+          &:hover {
+            cursor: pointer;
+            background-color: darken($secondary, 10%);
+          }
+
+          &.selected {
+            color: darken($white, 20%);
+          }
         }
 
-        select {
-          appearance: none;
-          background: $secondary;
-          border: none;
-          border-radius: 5px;
-          color: white;
-          padding: 2rem 5rem 2rem 2rem;
+        .custom-option:not(:last-child)::after {
+          content: "";
+          height: 1px;
+          width: 90%;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background: $white;
+        }
+
+        // arrow
+        .arrow {
+          position: relative;
+          height: 1.2rem;
+          width: 1.2rem;
+          margin-left: 4rem;
+        }
+        .arrow::before,
+        .arrow::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          width: 3px;
+          height: 100%;
+          transition: all 0.5s;
+        }
+        .arrow::before {
+          left: -3px;
+          transform: rotate(45deg);
+          background-color: $white;
+        }
+        .arrow::after {
+          left: 4px;
+          transform: rotate(-45deg);
+          background-color: $white;
+        }
+        .open .arrow::before {
+          left: -3px;
+          transform: rotate(-45deg);
+        }
+        .open .arrow::after {
+          left: 4px;
+          transform: rotate(45deg);
         }
 
         #sort-by {

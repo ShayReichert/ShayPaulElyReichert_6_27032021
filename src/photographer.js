@@ -74,12 +74,18 @@ function displayPhotographerSingle(singleData) {
         >
           <div class="sort">
             <label for="filter" id="sort_by">Trier par</label>
-            <div class="custom-select">
-              <select id="filter" aria-labelledby="sort_by">
-                <option value="likes">Popularité</option>
-                <option value="date">Date</option>
-                <option value="title">Titre</option>
-              </select>
+
+            <div class="custom-select-wrapper">
+              <div class="custom-select">
+                <div class="custom-select__trigger"><span>Popularité</span>
+                  <div class="arrow"></div>
+                </div>
+                <div class="custom-options" aria-labelledby="sort_by">
+                  <span class="custom-option selected" data-value="likes">Popularité</span>
+                  <span class="custom-option" data-value="date">Date</span>
+                  <span class="custom-option" data-value="title">Titre</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -141,11 +147,12 @@ elementReady(".photographer-page").then(() => {
 
 // DOM ELEMENTS & EVENT LISTENER
 function addEventListenerOnNewElements() {
-  const dropdown = document.querySelector("#filter");
+  const dropdown = document.querySelector(".custom-select-wrapper");
   const heartWrapper = document.querySelectorAll(".heart-wrapper");
   const medias = document.querySelectorAll(".media-link");
 
-  dropdown.addEventListener("change", filterWithDropdown);
+  // dropdown.addEventListener("change", filterWithDropdown);
+  dropdown.addEventListener("click", handleDropdown);
   heartWrapper.forEach((heart) => heart.addEventListener("click", handleLikesCount));
   heartWrapper.forEach((heart) => heart.addEventListener("keydown", handleEnterDown));
   medias.forEach((media) => media.addEventListener("click", openLightbox));
@@ -175,11 +182,32 @@ function handleLikesCount() {
   totalLikesWrapper.innerHTML = `${totalNumberOfLikes}`;
 }
 
+// Dropdown
+function handleDropdown() {
+  const select = this.querySelector(".custom-select");
+  const allOptions = document.querySelectorAll(".custom-option");
+
+  select.classList.toggle("open");
+
+  allOptions.forEach((option) => {
+    option.addEventListener("click", switchOption);
+  });
+
+  function switchOption() {
+    if (!this.classList.contains("selected")) {
+      this.parentNode.querySelector(".custom-option.selected").classList.remove("selected");
+      this.classList.add("selected");
+      this.closest(".custom-select").querySelector(".custom-select__trigger span").textContent = this.textContent;
+    }
+    filterWithDropdown(this);
+  }
+}
+
 // Filter medias with dropdown
-function filterWithDropdown() {
+function filterWithDropdown(selected) {
   const mediaContainer = document.querySelector(".media-wrapper");
   const mediaCards = Array.from(document.querySelectorAll(".media-card"));
-  const dropdownValue = this.value;
+  const dropdownValue = selected.getAttribute("data-value");
 
   let mediasSortBy = "";
 
