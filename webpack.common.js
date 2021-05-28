@@ -11,7 +11,7 @@ let config = {
   },
   output: {
     path: path.resolve(__dirname, "./docs/"),
-    publicPath: "/",
+    publicPath: "",
     filename: "[name].[hash:20].js",
     assetModuleFilename: "images/[hash][ext][query]",
   },
