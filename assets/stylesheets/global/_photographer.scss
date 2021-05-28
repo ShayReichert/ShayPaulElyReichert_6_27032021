@@ -52,6 +52,7 @@ body.photographer-page {
           .location {
             color: $secondary;
             font-size: 2.4rem;
+            font-weight: 400;
             margin: 2rem 0;
 
             @include screen-max($sm) {

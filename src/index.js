@@ -1,7 +1,7 @@
 require("../assets/stylesheets/main.scss");
 import data from "../data.json";
-import { extractValueFromUrl, CreateComponent } from "../assets/js/helpers";
-
+import { extractValueFromUrl } from "../assets/js/helpers";
+import { CreateComponent } from "../assets/js/classes";
 // ******************************* HOMEPAGE DATA ON LOAD ******************************* //
 
 // DOM ELEMENTS

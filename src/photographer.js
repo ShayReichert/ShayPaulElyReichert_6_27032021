@@ -1,6 +1,7 @@
 require("../assets/stylesheets/main.scss");
 import data from "../data.json";
-import { MediaType, extractValueFromUrl, CreateComponent, elementReady } from "../assets/js/helpers";
+import { extractValueFromUrl, elementReady } from "../assets/js/helpers";
+import { MediaType, CreateComponent } from "../assets/js/classes";
 
 //************************************************************************************************ //
 // ******************************* PHOTOGRAPHER SINGLE PAGE ON LOAD ******************************* //
@@ -18,6 +19,7 @@ const singleData = photographers.filter((photographer) => photographer.id == id)
 document.title = `${singleData[0].name} - FishEye`;
 displayPhotographerSingle(singleData[0]);
 
+// Display all photographer infos
 function displayPhotographerSingle(singleData) {
   const { name, id, city, country, tags, tagline, price, portrait } = singleData;
 
@@ -37,7 +39,7 @@ function displayPhotographerSingle(singleData) {
           <div class="col-1">
             <div class="infos">
               <h2>${name}</h2>
-              <p class="location">${city}, ${country}</p>
+              <h3 class="location">${city}, ${country}</h3>
               <p class="tagline">${tagline}</p>
               <div class="tags-wrapper">
 
@@ -53,7 +55,7 @@ function displayPhotographerSingle(singleData) {
 
           <div class="col-2">
             <div class="round-image">
-              <img src="./images/${portrait}" alt="" loading="lazy" />
+              <img src="./images/${portrait}" alt="${name}" loading="lazy" />
             </div>
           </div>
         </section>
@@ -64,7 +66,7 @@ function displayPhotographerSingle(singleData) {
           aria-label="Photos et vidéos du photographe"
         >
           <div class="sort">
-            <label for="filter" id="sort_by">Trier par</label>
+            <div id="sort_by">Trier par</div>
 
             <div class="custom-select-wrapper" tabindex="0">
               <div class="custom-select">
@@ -451,10 +453,10 @@ function setAttributes(isValid, element) {
   const input = element.querySelector("input");
 
   if (isValid) {
-    input.style.outline = "3px solid green";
+    input.style.outline = "3px solid #77d87c";
     element.setAttribute("data-validate", "yes");
   } else {
-    input.style.outline = "3px solid red";
+    input.style.outline = "3px solid #ea2e2e";
     element.setAttribute("data-validate", "no");
   }
 }
