@@ -10,7 +10,7 @@ let config = {
     photographer: "./src/photographer.js",
   },
   output: {
-    path: path.resolve(__dirname, "./public"),
+    path: path.resolve(__dirname, "./docs"),
     // filename: "./bundle.js",
     filename: "[name].[hash:20].js",
     assetModuleFilename: "images/[hash][ext][query]",

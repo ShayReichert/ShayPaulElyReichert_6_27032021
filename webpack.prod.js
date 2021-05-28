@@ -8,7 +8,7 @@ let config = merge(common, {
   mode: "production",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "./public"),
+    path: path.resolve(__dirname, "./docs"),
   },
   optimization: {
     minimize: true,
