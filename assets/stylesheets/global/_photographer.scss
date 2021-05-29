@@ -477,6 +477,7 @@ body.no-scroll {
 
         .close-lightbox {
           position: absolute;
+          top: 0;
           right: -8rem;
           color: $secondary;
           font-size: 5rem;
@@ -522,7 +523,7 @@ body.no-scroll {
 
     @include screen-max($sm) {
       width: 100%;
-      height: 100vh;
+      height: auto;
       margin: 0 auto;
       padding: 1.5rem;
     }
@@ -569,6 +570,12 @@ body.no-scroll {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        &[data-validate="no"] {
+          .inputs {
+            outline: 3px solid #ea2e2e;
+          }
+        }
 
         label {
           font-size: 3.6rem;
